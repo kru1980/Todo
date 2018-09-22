@@ -5,3 +5,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+/* App style */
+
+.main{
+  display: flex;
+  height: 100vh;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+.main .content {
+  flex-grow: 4
+}
+.main .sideBar {
+  flex-grow: 1
+}
