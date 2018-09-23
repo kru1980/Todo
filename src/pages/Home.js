@@ -1,6 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchTodos } from "../actions/index";
+import R from "ramda";
+
 import { Button } from "antd";
+import Title from "antd/lib/skeleton/Avatar";
 
-const Home = () => <div>Поле для вывода списка задач на странице home</div>;
+class Home extends Component {
+  componentDidMount() {
+    this.props.fetchTodos();
+  }
+  render() {
+    const todos = Object.values(this.props.todos);
+    const objTodo = this.props.todos;
+    console.log("objTodo render page Home", objTodo);
 
-export default Home;
+    return (
+      <div>
+        {todos.map(item => (
+          <div key={item.id}>{item.titleTodo}</div>
+        ))}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    todos: state.todo.byId
+  };
+};
+export default connect(
+  mapStateToProps,
+  { fetchTodos }
+)(Home);

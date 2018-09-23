@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import FieldInput from "./UX/FieldInput";
 import FieldTextarea from "./UX/FieldTextarea";
-import { actionAddTodo } from "../actions/index";
+import { addTodo } from "../actions/index";
 
 const Form = props => {
   const { handleSubmit, pristine, reset, submitting, invalid } = props;
   const onSubmit = addTodo => {
-    console.log("hi submit");
+    props.addTodo(addTodo);
     props.reset("todos");
   };
   return (
@@ -44,7 +44,7 @@ const Form = props => {
 export default compose(
   connect(
     null,
-    { actionAddTodo }
+    { addTodo }
   ),
   reduxForm({ form: "todos" })
 )(Form);
