@@ -5,7 +5,7 @@ import R from "ramda";
 import { Card, Col, Row } from "antd";
 
 import Todo from "../components/Todo";
-import "./Home.css";
+// import "./Home.css";
 
 class Home extends Component {
   componentDidMount() {
@@ -14,7 +14,6 @@ class Home extends Component {
 
   render() {
     const todos = Object.values(this.props.todos);
-    // const objTodo = this.props.todos;
     return (
       <div className="wrap-todos">
         <Todo todos={todos} className="todo-item" />
