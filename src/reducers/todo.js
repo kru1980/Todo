@@ -3,8 +3,11 @@ import {
   ADD_TODO_START,
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
-  FETCH_TODO_FAILUR
+  FETCH_TODO_FAILUR,
+  DELETE_TODO
 } from "../constance/actionTypes";
+
+const R = require("ramda");
 
 const initialState = {
   byId: {},
@@ -42,7 +45,6 @@ export default (state = initialState, { type, payload }) => {
 
     case FETCH_TODO_SUCCESS:
       const allIds = Object.keys(payload);
-      console.log("payload from reduser ", payload);
       return {
         ...state,
         byId: {
@@ -52,6 +54,18 @@ export default (state = initialState, { type, payload }) => {
         allIds,
         loading: false,
         error: null
+      };
+
+    case DELETE_TODO:
+      const _byId = R.dissoc(payload, state.byId);
+      const _allIds = R.without([payload], state.allIds);
+      const newstate = {
+        byId: { ..._byId },
+        allIds: _allIds,
+        loading: false
+      };
+      return {
+        ...newstate
       };
 
     default:

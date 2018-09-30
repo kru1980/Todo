@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Col, Row } from "antd";
+import { Card, Button } from "antd";
 
 import "./Todo.css";
 
-const Todo = ({ todos }) => {
-  const renderTodo = item => {
+const Todo = ({ todos, removeTodo }) => {
+  const renderTodo = (item, removeTodo) => {
     const { id, date, titleTodo, description } = item;
     return (
       <Card
@@ -12,9 +12,12 @@ const Todo = ({ todos }) => {
         key={id}
         title={titleTodo}
         extra={
-          <a style={{ marginLeft: 20 }} href="#">
-            Далее
-          </a>
+          <Button
+            style={{ marginLeft: 20 }}
+            type="danger"
+            icon="delete"
+            onClick={() => removeTodo(id)}
+          />
         }
       >
         <p>{description}</p>
@@ -26,7 +29,9 @@ const Todo = ({ todos }) => {
     );
   };
   return (
-    <div className="wrap-todos">{todos.map(item => renderTodo(item))}</div>
+    <div className="wrap-todos">
+      {todos.map(item => renderTodo(item, removeTodo))}
+    </div>
   );
 };
 

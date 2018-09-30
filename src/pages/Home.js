@@ -1,22 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTodos } from "../actions/index";
-import R from "ramda";
-import { Card, Col, Row } from "antd";
+import { fetchTodos, removeTodo } from "../actions/index";
 
 import Todo from "../components/Todo";
-// import "./Home.css";
 
 class Home extends Component {
   componentDidMount() {
     this.props.fetchTodos();
   }
 
+  handleRemoveTodo(id) {
+    this.props.removeTodo(id);
+  }
+
   render() {
     const todos = Object.values(this.props.todos);
+
     return (
       <div className="wrap-todos">
-        <Todo todos={todos} className="todo-item" />
+        <Todo todos={todos} removeTodo={this.handleRemoveTodo.bind(this)} />
       </div>
     );
   }
@@ -28,5 +30,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { fetchTodos }
+  { fetchTodos, removeTodo }
 )(Home);

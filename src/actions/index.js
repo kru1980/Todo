@@ -3,7 +3,8 @@ import {
   ADD_TODO_START,
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
-  FETCH_TODO_FAILUR
+  FETCH_TODO_FAILUR,
+  DELETE_TODO
 } from "../constance/actionTypes";
 
 import fire from "../firebase";
@@ -76,5 +77,22 @@ export const fetchTodos = () => {
       console.log("Error getting documents ", error.message);
       dispatch(fetchTodoFailur(error));
     }
+  };
+};
+
+// remove todo
+
+export const actionCreatorRemoveTodo = id => {
+  return {
+    type: DELETE_TODO,
+    payload: id
+  };
+};
+export const removeTodo = (id, dispatch) => {
+  return dispatch => {
+    const todoRef = fire.database().ref("/todos");
+    const adaRef = todoRef.child(id);
+    adaRef.remove();
+    dispatch(actionCreatorRemoveTodo(id));
   };
 };
