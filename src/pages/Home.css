@@ -1,0 +1,13 @@
+.wrap-todos{
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border: 1px solid;
+
+}
+.wrap-todos > .todo-item{
+    flex-basis: 180px;
+    flex: 1;
+    border: 1px solid red;
+}

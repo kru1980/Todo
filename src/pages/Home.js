@@ -2,29 +2,26 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchTodos } from "../actions/index";
 import R from "ramda";
+import { Card, Col, Row } from "antd";
 
-import { Button } from "antd";
-import Title from "antd/lib/skeleton/Avatar";
+import Todo from "../components/Todo";
+import "./Home.css";
 
 class Home extends Component {
   componentDidMount() {
     this.props.fetchTodos();
   }
+
   render() {
     const todos = Object.values(this.props.todos);
-    const objTodo = this.props.todos;
-    console.log("objTodo render page Home", objTodo);
-
+    // const objTodo = this.props.todos;
     return (
-      <div>
-        {todos.map(item => (
-          <div key={item.id}>{item.titleTodo}</div>
-        ))}
+      <div className="wrap-todos">
+        <Todo todos={todos} className="todo-item" />
       </div>
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     todos: state.todo.byId

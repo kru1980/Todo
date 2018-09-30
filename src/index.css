@@ -16,7 +16,10 @@ body {
   padding: 20px;
 }
 .main .content {
-  flex-grow: 4
+  flex-grow: 4;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .main .sideBar {
   flex-grow: 1
