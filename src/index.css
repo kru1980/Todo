@@ -21,6 +21,7 @@ body {
   justify-content: space-around;
   flex-wrap: wrap;
   /* border: 1px solid red; */
+  flex-grow: 1;
 }
 .main .sideBar {
   min-width: 320px;
