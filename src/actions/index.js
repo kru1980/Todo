@@ -68,6 +68,7 @@ export const fetchTodos = () => {
     try {
       const todoRef = fire.database().ref("/todos");
       const snapshot = await todoRef.once("value");
+
       const todos = snapshot.val();
       if (!todos) throw new Error("не могу загрузить список дел");
       // console.log("todos success from actions", todos);
@@ -90,9 +91,11 @@ export const actionCreatorRemoveTodo = id => {
 };
 export const removeTodo = (id, dispatch) => {
   return dispatch => {
-    const todoRef = fire.database().ref("/todos");
-    const adaRef = todoRef.child(id);
-    adaRef.remove();
+    fire
+      .database()
+      .ref(`/todos/${id}`)
+      .remove();
+
     dispatch(actionCreatorRemoveTodo(id));
   };
 };
