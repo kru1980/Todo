@@ -30,7 +30,7 @@ const Todo = ({ todos, removeTodo }) => {
   };
   return (
     <div className="wrap-todos">
-      {todos.map(item => renderTodo(item, removeTodo))}
+      {todos && todos.map(item => renderTodo(item, removeTodo))}
     </div>
   );
 };

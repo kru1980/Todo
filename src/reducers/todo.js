@@ -23,6 +23,8 @@ export default (state = initialState, { type, payload }) => {
         loading: true
       };
     case ADD_TODO_SUCCESS:
+      console.log("payload add-todo", payload);
+
       return {
         ...state,
         byId: {
@@ -31,7 +33,8 @@ export default (state = initialState, { type, payload }) => {
             ...payload
           }
         },
-        allIds: state.allIds.concat(payload.id),
+
+        allIds: R.append(payload.id, state.allIds),
         loading: false,
         error: null
       };
@@ -44,6 +47,7 @@ export default (state = initialState, { type, payload }) => {
 
     case FETCH_TODO_SUCCESS:
       const allIds = Object.keys(payload);
+
       return {
         ...state,
         byId: {

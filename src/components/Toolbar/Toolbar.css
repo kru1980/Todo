@@ -1,11 +1,14 @@
 .wraper-toolBar{
     width: 100%;
-    min-height: 64px;
+    height: 64px;
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    background-color: yellow;
+    justify-content: space-around;
+
+    background-color: orangered;
     align-items: center;
     padding: 0 20px;
 }
+
+/* заголовок и спан количество задач не стилизованы */
