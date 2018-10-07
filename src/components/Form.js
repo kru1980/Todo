@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import FieldInput from "./UX/FieldInput";
 import FieldTextarea from "./UX/FieldTextarea";
-import { addTodo } from "../actions/index";
+import { addTodo } from "../actions/actionsCreators";
 
 const Form = props => {
   const { handleSubmit, pristine, reset, submitting, invalid } = props;
