@@ -3,7 +3,6 @@ import {
   ADD_TODO_START,
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
-  FETCH_TODO_FAILUR,
   DELETE_TODO
 } from "../constance/actionTypes";
 

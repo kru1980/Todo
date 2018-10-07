@@ -8,7 +8,7 @@ import FieldTextarea from "./UX/FieldTextarea";
 import { addTodo } from "../actions/actionsCreators";
 
 const Form = props => {
-  const { handleSubmit, pristine, reset, submitting, invalid } = props;
+  const { handleSubmit, pristine, submitting, invalid } = props;
   const onSubmit = addTodo => {
     props.addTodo(addTodo);
     props.reset("todos");

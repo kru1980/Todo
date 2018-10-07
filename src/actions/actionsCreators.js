@@ -67,13 +67,9 @@ export const fetchTodos = () => {
 
     try {
       const todoRef = fire.database().ref("/todos");
-      const snapshot = await todoRef.once("value");
-
-      const todos = snapshot.val();
-      if (!todos) throw new Error("не могу загрузить список дел");
-      // console.log("todos success from actions", todos);
-
-      dispatch(fetchTodoSuccess(todos));
+      await todoRef.on("value", snapshot => {
+        dispatch(fetchTodoSuccess(snapshot.val()));
+      });
     } catch (error) {
       console.log("Error getting documents ", error.message);
       dispatch(fetchTodoFailur(error));
