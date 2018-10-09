@@ -4,7 +4,7 @@ import {
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
   DELETE_TODO
-} from "../constance/actionTypes";
+} from "../actions/actionsTypes";
 
 const R = require("ramda");
 

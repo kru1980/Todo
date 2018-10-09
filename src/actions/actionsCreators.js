@@ -5,7 +5,7 @@ import {
   FETCH_TODO_SUCCESS,
   FETCH_TODO_FAILUR,
   DELETE_TODO
-} from "../constance/actionTypes";
+} from "../actions/actionsTypes";
 
 import fire from "../firebase";
 
