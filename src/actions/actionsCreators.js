@@ -25,7 +25,10 @@ export const actionAddTodoSuccess = (addTodo, id, date) => {
 export const addTodo = addTodo => {
   return async dispatch => {
     const date = Date.now().toString();
-    const todoRef = fire.database().ref("/todos");
+    const todoRef = fire
+      .database()
+      .ref()
+      .child("/todos");
     const newTodo = todoRef.push();
     const id = newTodo.key;
     dispatch(addTodoStart());
