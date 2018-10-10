@@ -13,4 +13,8 @@ const config = {
 
 const fire = firebase.initializeApp(config);
 
-export default fire;
+export const fbRef = fire.database().ref();
+export const fbRefTodo = fire
+  .database()
+  .ref()
+  .child("todos");

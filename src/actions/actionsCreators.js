@@ -7,7 +7,7 @@ import {
   DELETE_TODO
 } from "../actions/actionsTypes";
 
-import fire from "../firebase";
+import { fbRef, fbRefTodo } from "../firebase";
 
 export const addTodoStart = () => {
   return {
@@ -24,14 +24,12 @@ export const actionAddTodoSuccess = (addTodo, id, date) => {
 
 export const addTodo = addTodo => {
   return async dispatch => {
-    const date = Date.now().toString();
-    const todoRef = fire
-      .database()
-      .ref()
-      .child("/todos");
-    const newTodo = todoRef.push();
-    const id = newTodo.key;
     dispatch(addTodoStart());
+
+    const date = Date.now().toString();
+
+    const newTodo = fbRefTodo.push();
+    const id = newTodo.key;
 
     await newTodo.set({
       titleTodo: addTodo.titleTodo,
@@ -39,6 +37,7 @@ export const addTodo = addTodo => {
       id,
       date
     });
+
     dispatch(actionAddTodoSuccess(addTodo, id, date));
   };
 };
@@ -69,8 +68,7 @@ export const fetchTodos = () => {
     dispatch(fetchTodoStart());
 
     try {
-      const todoRef = fire.database().ref("/todos");
-      await todoRef.on("value", snapshot => {
+      await fbRefTodo.on("value", snapshot => {
         dispatch(fetchTodoSuccess(snapshot.val()));
       });
     } catch (error) {
@@ -90,10 +88,7 @@ export const actionCreatorRemoveTodo = id => {
 };
 export const removeTodo = (id, dispatch) => {
   return dispatch => {
-    fire
-      .database()
-      .ref(`/todos/${id}`)
-      .remove();
+    fbRef.child(`/todos/${id}`).remove();
 
     dispatch(actionCreatorRemoveTodo(id));
   };
