@@ -1,10 +1,11 @@
 import React from "react";
 
-import Form from "./Form";
+// import Form from "./Form";AntForm
+import AntForm from "./AntForm";
 
 const SideBar = () => (
   <div>
-    <Form />
+    <AntForm />
   </div>
 );
 

@@ -33,9 +33,10 @@ export const addTodo = addTodo => {
 
     await newTodo.set({
       titleTodo: addTodo.titleTodo,
-      description: addTodo.description,
+      dateCompletedTod: addTodo.datePicker,
       id,
-      date
+      date,
+      completed: false
     });
 
     dispatch(actionAddTodoSuccess(addTodo, id, date));
