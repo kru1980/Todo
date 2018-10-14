@@ -25,8 +25,12 @@ export const actionAddTodoSuccess = (addTodo, id, date) => {
 export const addTodo = addTodo => {
   return async dispatch => {
     dispatch(addTodoStart());
-
-    const date = Date.now().toString();
+    let options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    };
+    const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
 
     const newTodo = fbRefTodo.push();
     const id = newTodo.key;

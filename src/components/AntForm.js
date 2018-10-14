@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, DatePicker, Button, Input, Icon } from "antd";
 import { addTodo } from "../actions/actionsCreators";
+import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
 
@@ -93,7 +94,9 @@ class TimeRelatedForm extends React.Component {
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
-          {getFieldDecorator("datePicker", config)(<DatePicker />)}
+          {getFieldDecorator("datePicker", config)(
+            <DatePicker locale={locale} />
+          )}
         </FormItem>
 
         <FormItem
@@ -103,9 +106,12 @@ class TimeRelatedForm extends React.Component {
           }}
         >
           <Button
-            type="primary"
+            // type="primary"
+            type="danger"
             htmlType="submit"
             disabled={hasErrors(getFieldsError())}
+            // style={{ background: "orangered", color: "white" }}
+            // ghost
           >
             Добавить задачу
           </Button>
