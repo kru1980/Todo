@@ -24,8 +24,8 @@ const Todo = ({ todos, removeTodo }) => {
     return (
       <div className="todoItem" key={id}>
         <div className="todoItem-text">
-          {titleTodoLength < 20 ? titleTodo : bigText()}
-
+          {/* {titleTodoLength < 20 ? titleTodo : bigText()} */}
+          {titleTodo}
           <h6>
             Date create:
             {date}

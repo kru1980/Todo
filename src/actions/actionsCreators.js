@@ -28,7 +28,10 @@ export const addTodo = addTodo => {
     let options = {
       year: "numeric",
       month: "long",
-      day: "numeric"
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric"
     };
     const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
 

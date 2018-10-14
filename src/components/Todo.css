@@ -6,24 +6,21 @@
 
 
 }
-.wrap-todos > .todoItem{
-    min-width: 140px;
-    min-height: 160px;
+ .todoItem{
+    min-width: 180px;
+    min-height: 180px;
     border: 1px dashed orangered;
     border-radius: 5px;
     padding:10px;
     margin: 5px;
     flex: 1;
     
-}
-.todoItem {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    
-    
 }
+
 .todoItem-text  {
     height: 70%;
     display: flex;

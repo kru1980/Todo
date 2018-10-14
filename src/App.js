@@ -5,6 +5,7 @@ import Toolbar from "./components/Toolbar/Toolbar";
 import Content from "./components/Content";
 import SideBar from "./components/SideBar";
 import Home from "./pages/Home";
+import TodoItemPage from "./pages/TodoItemPage";
 import "./index.css";
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
             <div className="content">
               <Content>
                 <Route path="/" component={Home} />
+                {/* <Route path="/todo:id" component={TodoItemPage} /> */}
               </Content>
             </div>
             <div className="sideBar">
