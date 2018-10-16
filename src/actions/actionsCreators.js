@@ -4,7 +4,8 @@ import {
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
   FETCH_TODO_FAILUR,
-  DELETE_TODO
+  DELETE_TODO,
+  UPDATE_TODO
 } from "../actions/actionsTypes";
 
 import { fbRef, fbRefTodo } from "../firebase";
@@ -99,5 +100,21 @@ export const removeTodo = (id, dispatch) => {
     fbRef.child(`/todos/${id}`).remove();
 
     dispatch(actionCreatorRemoveTodo(id));
+  };
+};
+
+// update todo
+
+export const actionCreatorUpdateTodo = id => {
+  return {
+    type: UPDATE_TODO,
+    payload: id
+  };
+};
+
+export const updateTodo = (id, dispatch) => {
+  return dispatch => {
+    // fb
+    dispatch(actionCreatorUpdateTodo(id));
   };
 };

@@ -5,7 +5,24 @@ import { Link } from "react-router-dom";
 import "./Todo.css";
 const R = require("ramda");
 
-const Todo = ({ todos, removeTodo }) => {
+// import React, { Component } from "react";
+// import PropTypes from "prop-types";
+
+// export default class Todo extends Component {
+//   static propTypes = {
+//     prop: PropTypes
+//   }
+
+//   render() {
+//     return (
+//       <div>
+
+//       </div>
+//     )
+//   }
+// }
+
+const Todo = ({ todos, removeTodo, updateTodo }) => {
   const renderTodo = (item, removeTodo) => {
     const { id, date, titleTodo } = item;
     const smallDescription = R.take(40, titleTodo);
@@ -33,7 +50,10 @@ const Todo = ({ todos, removeTodo }) => {
         </div>
         <div className="todoItem-footer">
           <Button type="danger" onClick={() => removeTodo(id)}>
-            удалить
+            <Icon type="delete" theme="outlined" />
+          </Button>
+          <Button type="danger" onClick={() => updateTodo(id)}>
+            <Icon type="edit" theme="outlined" />
           </Button>
         </div>
       </div>

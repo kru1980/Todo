@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTodos, removeTodo } from "../actions/actionsCreators";
+import { fetchTodos, removeTodo, updateTodo } from "../actions/actionsCreators";
 
 import Todo from "../components/Todo";
 
@@ -12,13 +12,21 @@ class Home extends Component {
   handleRemoveTodo(id) {
     this.props.removeTodo(id);
   }
+  handleUpdateTodo(id) {
+    this.props.updateTodo(id);
+    console.log(id);
+  }
 
   render() {
     const todos = Object.values(this.props.todos);
 
     return (
       <div className="wrap-todos">
-        <Todo todos={todos} removeTodo={this.handleRemoveTodo.bind(this)} />
+        <Todo
+          todos={todos}
+          removeTodo={this.handleRemoveTodo.bind(this)}
+          updateTodo={this.handleUpdateTodo.bind(this)}
+        />
       </div>
     );
   }
@@ -30,5 +38,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { fetchTodos, removeTodo }
+  { fetchTodos, removeTodo, updateTodo }
 )(Home);
