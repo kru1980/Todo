@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchTodos, removeTodo, updateTodo } from "../actions/actionsCreators";
 
 import Todo from "../components/Todo";
+import "../pages/Home.css";
 
 class Home extends Component {
   componentDidMount() {
@@ -22,11 +23,15 @@ class Home extends Component {
 
     return (
       <div className="wrap-todos">
-        <Todo
-          todos={todos}
-          removeTodo={this.handleRemoveTodo.bind(this)}
-          updateTodo={this.handleUpdateTodo.bind(this)}
-        />
+        {todos &&
+          todos.map(todo => (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              removeTodo={this.handleRemoveTodo.bind(this)}
+              updateTodo={this.handleUpdateTodo.bind(this)}
+            />
+          ))}
       </div>
     );
   }
