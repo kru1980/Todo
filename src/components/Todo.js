@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Icon } from "antd";
+import { Button, Icon, Input } from "antd";
 
 import "./Todo.css";
 
@@ -11,25 +11,46 @@ class Todo extends Component {
     };
     this.renderDisplay = this.renderDisplay.bind(this);
     this.renderForm = this.renderForm.bind(this);
+    this.handleStateUpdateTodo = this.handleStateUpdateTodo.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.isEditing) {
+      this.refs.newTitleTodo.focus();
+      this.refs.newTitleTodo.select();
+    }
+  }
+
+  handleStateUpdateTodo(e) {
+    e.preventDefault();
+    const newTodoTitle = this.refs.newTitleTodo.value;
+    // console.log("newTodoTitle from todo", newTodoTitle);
+
+    this.props.updateTodo(this.props.todo.id, newTodoTitle);
+    this.setState({ isEditing: false });
   }
   renderForm() {
     return (
-      <div>
-        <form action="">
-          <input type="text" defaultValue={this.props.todo.titleTodo} />
-          <button
-            type="submit"
-            onClick={() => this.props.updateTodo(this.props.id)}
-          >
-            save
-          </button>
+      <div className="todoItem">
+        <form>
+          <div className="todoItem-text">
+            <input
+              ref="newTitleTodo"
+              defaultValue={this.props.todo.titleTodo}
+            />
+          </div>
+          <div className="todoItem-footer">
+            <Button type="danger" onClick={this.handleStateUpdateTodo}>
+              <Icon type="save" theme="outlined" />
+            </Button>
+          </div>
         </form>
       </div>
     );
   }
   renderDisplay() {
     const { todo, removeTodo } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
     const { id, date, titleTodo } = todo;
     return (

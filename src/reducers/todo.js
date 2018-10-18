@@ -3,7 +3,8 @@ import {
   ADD_TODO_START,
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
-  DELETE_TODO
+  DELETE_TODO,
+  UPDATE_TODO
 } from "../actions/actionsTypes";
 
 const R = require("ramda");
@@ -70,6 +71,21 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...newstate
       };
+
+    case UPDATE_TODO:
+      const { id, newTodoTitle } = payload;
+
+      const updateElement = R.compose(
+        R.assoc("titleTodo", newTodoTitle),
+        R.prop(id)
+      )(state.byId);
+
+      const updateState = {
+        byId: R.assoc(id, updateElement, state.byId),
+        allIds: [...state.allIds],
+        loading: false
+      };
+      return updateState;
 
     default:
       return state;

@@ -13,9 +13,9 @@ class Home extends Component {
   handleRemoveTodo(id) {
     this.props.removeTodo(id);
   }
-  handleUpdateTodo(id) {
-    this.props.updateTodo(id);
-    console.log(id);
+  handleUpdateTodo(id, newTodoTitle) {
+    this.props.updateTodo(id, newTodoTitle);
+    console.log("from home", id, newTodoTitle);
   }
 
   render() {

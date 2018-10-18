@@ -41,7 +41,7 @@ export const addTodo = addTodo => {
 
     await newTodo.set({
       titleTodo: addTodo.titleTodo,
-      dateCompletedTod: addTodo.datePicker,
+      dateCompletedTod: addTodo.datePicker, // че бля за название
       id,
       date,
       completed: false
@@ -105,16 +105,49 @@ export const removeTodo = (id, dispatch) => {
 
 // update todo
 
-export const actionCreatorUpdateTodo = id => {
+export const actionCreatorUpdateTodo = (id, newTodoTitle) => {
   return {
     type: UPDATE_TODO,
-    payload: id
+    payload: {
+      id,
+      newTodoTitle
+    }
   };
 };
 
-export const updateTodo = (id, dispatch) => {
-  return dispatch => {
+export const updateTodo = (id, newTodoTitle, dispatch) => {
+  // передать аргументом данные старого dateCompletedTod
+  return async dispatch => {
     // fb
-    dispatch(actionCreatorUpdateTodo(id));
+    let options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric"
+    };
+    const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
+
+    // let updatesTodo = {
+    //   titleTodo: newTodoTitle,
+    //   // dateCompletedTod: addTodo.datePicker,
+    //   id,
+    //   date,
+    //   completed: false
+    // };
+
+    let refUpdateTodo = fbRef.child(`todo/${id}`);
+    await refUpdateTodo.set({
+      titleTodo: newTodoTitle,
+      // dateCompletedTod: addTodo.datePicker,
+      id,
+      date,
+      completed: false
+    });
+    console.log(refUpdateTodo); // не работает
+
+    // после обновления базы, обновляем state
+    dispatch(actionCreatorUpdateTodo(id, newTodoTitle));
   };
 };
