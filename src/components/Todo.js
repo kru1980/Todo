@@ -12,6 +12,7 @@ class Todo extends Component {
     this.renderDisplay = this.renderDisplay.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.handleStateUpdateTodo = this.handleStateUpdateTodo.bind(this);
+    this.handleСancelUpdate = this.handleСancelUpdate.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -21,12 +22,16 @@ class Todo extends Component {
     }
   }
 
+  handleСancelUpdate() {
+    this.setState({ isEditing: false });
+  }
+
   handleStateUpdateTodo(e) {
+    // const { id, dateCompletedTod } = this.props.todo;
     e.preventDefault();
     const newTodoTitle = this.refs.newTitleTodo.value;
-    // console.log("newTodoTitle from todo", newTodoTitle);
-
-    this.props.updateTodo(this.props.todo.id, newTodoTitle);
+    const dateCompletedTod = this.refs.dateCompletedTod.value;
+    this.props.updateTodo(this.props.todo.id, newTodoTitle, dateCompletedTod);
     this.setState({ isEditing: false });
   }
   renderForm() {
@@ -38,10 +43,17 @@ class Todo extends Component {
               ref="newTitleTodo"
               defaultValue={this.props.todo.titleTodo}
             />
+            <input
+              ref="dateCompletedTod"
+              defaultValue={this.props.todo.dateCompletedTod}
+            />
           </div>
           <div className="todoItem-footer">
             <Button type="danger" onClick={this.handleStateUpdateTodo}>
               <Icon type="save" theme="outlined" />
+            </Button>
+            <Button type="danger" onClick={this.handleСancelUpdate}>
+              <Icon type="stop" theme="outlined" />
             </Button>
           </div>
         </form>
@@ -50,14 +62,17 @@ class Todo extends Component {
   }
   renderDisplay() {
     const { todo, removeTodo } = this.props;
-    // console.log(this.props);
+    const { id, date, titleTodo, dateCompletedTod } = todo;
 
-    const { id, date, titleTodo } = todo;
     return (
       <div>
         <div className="todoItem">
           <div className="todoItem-text">
             {titleTodo}
+            <h4>
+              Date dedline:
+              {dateCompletedTod}
+            </h4>
             <h6>
               Date create:
               {date}

@@ -4,7 +4,8 @@ import {
   FETCH_TODO_START,
   FETCH_TODO_SUCCESS,
   DELETE_TODO,
-  UPDATE_TODO
+  UPDATE_TODO_START,
+  UPDATE_TODO_SUCCES
 } from "../actions/actionsTypes";
 
 const R = require("ramda");
@@ -24,8 +25,6 @@ export default (state = initialState, { type, payload }) => {
         loading: true
       };
     case ADD_TODO_SUCCESS:
-      console.log("payload add-todo", payload);
-
       return {
         ...state,
         byId: {
@@ -71,8 +70,12 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...newstate
       };
-
-    case UPDATE_TODO:
+    case UPDATE_TODO_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case UPDATE_TODO_SUCCES:
       const { id, newTodoTitle } = payload;
 
       const updateElement = R.compose(

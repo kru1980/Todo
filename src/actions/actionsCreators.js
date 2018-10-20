@@ -5,7 +5,8 @@ import {
   FETCH_TODO_SUCCESS,
   FETCH_TODO_FAILUR,
   DELETE_TODO,
-  UPDATE_TODO
+  UPDATE_TODO_SUCCES,
+  UPDATE_TODO_START
 } from "../actions/actionsTypes";
 
 import { fbRef, fbRefTodo } from "../firebase";
@@ -16,10 +17,10 @@ export const addTodoStart = () => {
   };
 };
 
-export const actionAddTodoSuccess = (addTodo, id, date) => {
+export const actionAddTodoSuccess = (addTodo, id, date, dateCompletedTod) => {
   return {
     type: ADD_TODO_SUCCESS,
-    payload: { ...addTodo, id, date }
+    payload: { ...addTodo, id, date, dateCompletedTod }
   };
 };
 
@@ -35,7 +36,7 @@ export const addTodo = addTodo => {
       second: "numeric"
     };
     const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
-
+    const dateCompletedTod = addTodo.datePicker;
     const newTodo = fbRefTodo.push();
     const id = newTodo.key;
 
@@ -47,7 +48,7 @@ export const addTodo = addTodo => {
       completed: false
     });
 
-    dispatch(actionAddTodoSuccess(addTodo, id, date));
+    dispatch(actionAddTodoSuccess(addTodo, id, date, dateCompletedTod));
   };
 };
 
@@ -105,9 +106,15 @@ export const removeTodo = (id, dispatch) => {
 
 // update todo
 
+export const actionUpdateTodoStart = () => {
+  return {
+    type: UPDATE_TODO_START
+  };
+};
+
 export const actionCreatorUpdateTodo = (id, newTodoTitle) => {
   return {
-    type: UPDATE_TODO,
+    type: UPDATE_TODO_SUCCES,
     payload: {
       id,
       newTodoTitle
@@ -115,10 +122,8 @@ export const actionCreatorUpdateTodo = (id, newTodoTitle) => {
   };
 };
 
-export const updateTodo = (id, newTodoTitle, dispatch) => {
-  // передать аргументом данные старого dateCompletedTod
+export const updateTodo = (id, newTodoTitle, dateCompletedTod, dispatch) => {
   return async dispatch => {
-    // fb
     let options = {
       year: "numeric",
       month: "long",
@@ -129,25 +134,16 @@ export const updateTodo = (id, newTodoTitle, dispatch) => {
     };
     const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
 
-    // let updatesTodo = {
-    //   titleTodo: newTodoTitle,
-    //   // dateCompletedTod: addTodo.datePicker,
-    //   id,
-    //   date,
-    //   completed: false
-    // };
+    const refUpdateTodo = fbRef.child(`todos/${id}`);
 
-    let refUpdateTodo = fbRef.child(`todo/${id}`);
     await refUpdateTodo.set({
       titleTodo: newTodoTitle,
-      // dateCompletedTod: addTodo.datePicker,
+      dateCompletedTod,
       id,
       date,
       completed: false
     });
-    console.log(refUpdateTodo); // не работает
 
-    // после обновления базы, обновляем state
-    dispatch(actionCreatorUpdateTodo(id, newTodoTitle));
+    dispatch(actionCreatorUpdateTodo(id, newTodoTitle, dateCompletedTod, date));
   };
 };

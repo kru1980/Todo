@@ -30,7 +30,7 @@ class TimeRelatedForm extends React.Component {
         ...fieldsValue,
         datePicker: fieldsValue["datePicker"].format("YYYY-MM-DD")
       };
-      console.log("Received values of form: ", values);
+      // console.log("Received values of form: ", values);
       this.props.addTodo(values);
       this.props.form.resetFields();
       this.props.form.validateFields();
@@ -90,7 +90,6 @@ class TimeRelatedForm extends React.Component {
 
         <FormItem
           {...formItemLayout}
-          //   label="DatePicker"
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
@@ -106,12 +105,9 @@ class TimeRelatedForm extends React.Component {
           }}
         >
           <Button
-            // type="primary"
             type="danger"
             htmlType="submit"
             disabled={hasErrors(getFieldsError())}
-            // style={{ background: "orangered", color: "white" }}
-            // ghost
           >
             Добавить задачу
           </Button>

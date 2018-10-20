@@ -13,10 +13,13 @@ class Home extends Component {
   handleRemoveTodo(id) {
     this.props.removeTodo(id);
   }
-  handleUpdateTodo(id, newTodoTitle) {
-    this.props.updateTodo(id, newTodoTitle);
-    console.log("from home", id, newTodoTitle);
+  handleUpdateTodo(id, newTodoTitle, dateCompletedTod) {
+    this.props.updateTodo(id, newTodoTitle, dateCompletedTod);
   }
+  /*
+ * TODO:
+ мое новое расширение
+  */
 
   render() {
     const todos = Object.values(this.props.todos);
