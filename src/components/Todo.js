@@ -67,26 +67,28 @@ class Todo extends Component {
       <div>
         <div className="todoItem">
           <div className="todoItem-text">
-            {titleTodo}
-            <h4>
+            <h3>{titleTodo}</h3>
+            <p>
               Date dedline:
               {dateCompletedTod}
-            </h4>
-            <h6>
+            </p>
+            <p>
               Date create:
               {date}
-            </h6>
+            </p>
           </div>
           <div className="todoItem-footer">
-            <Button type="danger" onClick={() => removeTodo(id)}>
-              <Icon type="delete" theme="outlined" />
-            </Button>
-            <Button
-              type="danger"
-              onClick={() => this.setState({ isEditing: true })}
-            >
-              <Icon type="edit" theme="outlined" />
-            </Button>
+            <div className="todoItem-footer--buttons">
+              <Button type="danger" onClick={() => removeTodo(id)}>
+                <Icon type="delete" theme="outlined" />
+              </Button>
+              <Button
+                type="danger"
+                onClick={() => this.setState({ isEditing: true })}
+              >
+                <Icon type="edit" theme="outlined" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

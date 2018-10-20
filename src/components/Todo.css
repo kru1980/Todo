@@ -7,10 +7,11 @@
 
 }
  .todoItem{
-    min-width: 180px;
+    width: 100vh;
+    
     min-height: 180px;
     border: 1px dashed orangered;
-    border-radius: 5px;
+    border-radius: 10px;
     padding:10px;
     margin: 5px;
     flex: 1;
@@ -26,14 +27,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-bottom: 1px dashed orangered;
     align-items: center;
     
     
 }
 .todoItem-footer {
-    height: 30px;
+    min-height: 30px;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-top: 1px dashed orangered;
+}
+.todoItem-footer--buttons{
+    padding-top: 10px;
+
 }
