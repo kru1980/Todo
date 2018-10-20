@@ -5,7 +5,6 @@ import Toolbar from "./components/Toolbar/Toolbar";
 import Content from "./components/Content";
 import SideBar from "./components/SideBar";
 import Home from "./pages/Home";
-import TodoItemPage from "./pages/TodoItemPage";
 import "./index.css";
 
 class App extends Component {

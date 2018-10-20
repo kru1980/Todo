@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Icon, Input } from "antd";
+import { Button, Icon } from "antd";
 
 import "./Todo.css";
 
@@ -27,7 +27,6 @@ class Todo extends Component {
   }
 
   handleStateUpdateTodo(e) {
-    // const { id, dateCompletedTod } = this.props.todo;
     e.preventDefault();
     const newTodoTitle = this.refs.newTitleTodo.value;
     const dateCompletedTod = this.refs.dateCompletedTod.value;
@@ -49,11 +48,11 @@ class Todo extends Component {
             />
           </div>
           <div className="todoItem-footer">
-            <Button type="danger" onClick={this.handleStateUpdateTodo}>
-              <Icon type="save" theme="outlined" />
-            </Button>
             <Button type="danger" onClick={this.handleСancelUpdate}>
               <Icon type="stop" theme="outlined" />
+            </Button>
+            <Button type="danger" onClick={this.handleStateUpdateTodo}>
+              <Icon type="save" theme="outlined" />
             </Button>
           </div>
         </form>

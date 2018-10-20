@@ -6,7 +6,8 @@ import {
   FETCH_TODO_FAILUR,
   DELETE_TODO,
   UPDATE_TODO_SUCCES,
-  UPDATE_TODO_START
+  UPDATE_TODO_START,
+  UPDATE_TODO_FAILURE
 } from "../actions/actionsTypes";
 
 import { fbRef, fbRefTodo } from "../firebase";
@@ -121,29 +122,44 @@ export const actionCreatorUpdateTodo = (id, newTodoTitle) => {
     }
   };
 };
+export const actionUpdateTodoFailure = error => {
+  return {
+    type: UPDATE_TODO_FAILURE,
+    payload: error,
+    error: true
+  };
+};
 
 export const updateTodo = (id, newTodoTitle, dateCompletedTod, dispatch) => {
-  return async dispatch => {
-    let options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric"
+  try {
+    return async dispatch => {
+      dispatch(actionUpdateTodoStart());
+
+      let options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
+      };
+      const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
+
+      const refUpdateTodo = fbRef.child(`todos/${id}`);
+
+      await refUpdateTodo.set({
+        titleTodo: newTodoTitle,
+        dateCompletedTod,
+        id,
+        date,
+        completed: false
+      });
+
+      dispatch(
+        actionCreatorUpdateTodo(id, newTodoTitle, dateCompletedTod, date)
+      );
     };
-    const date = new Date(Date.now()).toLocaleDateString("ru-RU", options);
-
-    const refUpdateTodo = fbRef.child(`todos/${id}`);
-
-    await refUpdateTodo.set({
-      titleTodo: newTodoTitle,
-      dateCompletedTod,
-      id,
-      date,
-      completed: false
-    });
-
-    dispatch(actionCreatorUpdateTodo(id, newTodoTitle, dateCompletedTod, date));
-  };
+  } catch (error) {
+    dispatch(actionUpdateTodoFailure(error));
+  }
 };
