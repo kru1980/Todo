@@ -13,7 +13,8 @@ class Toolbar extends Component {
       fontSize: "24px",
       color: "black",
       padding: "0px",
-      margin: "0px"
+      margin: "0px",
+      marginLeft: "10px"
     };
     return (
       <div>
@@ -23,6 +24,18 @@ class Toolbar extends Component {
               <Link style={style} to="/">
                 Toolbar
               </Link>
+              <Link style={style} to="/about">
+                About
+              </Link>
+              {this.props.user ? (
+                <Link style={style} to="/logout">
+                  Logout
+                </Link>
+              ) : (
+                <Link style={style} to="/login">
+                  Login
+                </Link>
+              )}
             </div>
             <div>
               <h4>

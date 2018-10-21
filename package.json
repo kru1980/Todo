@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.9.2",
     "firebase": "^5.5.1",
+    "firebaseui": "^3.4.1",
     "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

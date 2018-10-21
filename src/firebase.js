@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/database";
-import "firebase/storage";
+import "firebase/auth";
+// import "firebase/storage";
+// import "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyCV6HVbskI_MnJ6VeCbOzGwGEGkR2f_FZw",
@@ -12,6 +14,9 @@ const config = {
 };
 
 const fire = firebase.initializeApp(config);
+// fire.firestore().settings({ timestampsInSnapshots: true });
+
+export default fire;
 
 export const fbRef = fire.database().ref();
 export const fbRefTodo = fire
