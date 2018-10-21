@@ -22,18 +22,18 @@ class Toolbar extends Component {
           <div className="wraper-toolBar">
             <div>
               <Link style={style} to="/">
-                Toolbar
+                Главная
               </Link>
-              <Link style={style} to="/about">
-                About
+              <Link style={style} to="/createTodo">
+                Форма
               </Link>
               {this.props.user ? (
                 <Link style={style} to="/logout">
-                  Logout
+                  Выход
                 </Link>
               ) : (
                 <Link style={style} to="/login">
-                  Login
+                  Вход
                 </Link>
               )}
             </div>

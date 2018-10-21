@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchTodos, removeTodo, updateTodo } from "../actions/actionsCreators";
 
 import Todo from "../components/Todo";
+import SideBar from "../components/SideBar";
 // import "../pages/Home.css";
 
 class Home extends Component {
