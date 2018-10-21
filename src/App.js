@@ -9,7 +9,8 @@ import Content from "./components/Content";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home";
 import CreateTodo from "./pages/CreateTodo";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
+import LoginAnt from "./pages/LoginAnt";
 import Logout from "./pages/Logout";
 import "./index.css";
 
@@ -61,7 +62,7 @@ class App extends Component {
                       user={this.state.user}
                     />
 
-                    <Route path="/login" component={Login} />
+                    <Route path="/login" component={LoginAnt} />
 
                     <Route
                       path="/logout"

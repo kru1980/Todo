@@ -5,10 +5,10 @@ import SideBar from "../components/SideBar";
 const CreateTodo = () => {
   return (
     <div>
-      page CreateTodo
+
       <div>
-        <Row>
-          <Col span={24}>
+      <Row type="flex" justify="center">
+          <Col span={8}>
             <SideBar />
           </Col>
         </Row>
