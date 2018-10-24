@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.9.2",
+    "dotenv": "^6.1.0",
     "firebase": "^5.5.1",
     "firebaseui": "^3.4.1",
     "ramda": "^0.25.0",
