@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "../firebase";
 import { Row, Col } from "antd";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -24,9 +25,11 @@ class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {})
+
       .catch(error => {
         console.log(error);
       });
+    console.log("props from login", this.props);
   }
 
   signup(e) {

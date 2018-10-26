@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Toolbar.css";
 import { hakLength } from "../../selectors";
@@ -7,40 +7,45 @@ import { Affix } from "antd";
 
 class Toolbar extends Component {
   render() {
-    const { countTasks } = this.props;
+    const { countTasks, user } = this.props;
 
-    const style = {
-      fontSize: "24px",
-      color: "black",
-      padding: "0px",
-      margin: "0px",
-      marginLeft: "10px"
-    };
     return (
       <div>
         <Affix>
           <div className="wraper-toolBar">
-            <div>
-              <Link style={style} to="/">
+            <div className="toolbar-links">
+              <NavLink
+                exact
+                to="/"
+                activeStyle={{
+                  fontWeight: "bold"
+                }}
+              >
                 Главная
-              </Link>
-              <Link style={style} to="/createTodo">
-                Форма
-              </Link>
-              {this.props.user ? (
-                <Link style={style} to="/logout">
-                  Выход
-                </Link>
-              ) : (
-                <Link style={style} to="/login">
-                  Вход
-                </Link>
-              )}
+              </NavLink>
+
+              {user ? (
+                <NavLink
+                  activeStyle={{
+                    fontWeight: "bold"
+                  }}
+                  to="/createTodo"
+                >
+                  Добавить
+                </NavLink>
+              ) : null}
             </div>
-            <div>
+            <div className="toolbar-count">
               <h4>
                 Количество задач: <span>{countTasks}</span>
               </h4>
+            </div>
+            <div className="toolbar-registration">
+              {user ? (
+                <NavLink to="/logout">Выход</NavLink>
+              ) : (
+                <NavLink to="/login">Вход/Регистрация</NavLink>
+              )}
             </div>
           </div>
         </Affix>

@@ -2,7 +2,7 @@
     width: 100%;
     height: 64px;
     display: flex;
-    flex: 1;
+    /* flex: 1; */
     flex-wrap: wrap;
     justify-content: space-around;
 
@@ -10,5 +10,21 @@
     align-items: center;
     padding: 0 20px;
 }
-
+.toolbar-links > a {
+    font-size: 24px;
+      color: black;
+      padding: 0;
+      margin: 0;
+      margin-left: 10px;
+}
+.toolbar-registration a{
+    color: wheat;
+    font-size: 16px;
+}
+.toolbar-registration a:hover{
+    color: wheat;
+    font-size: 16px;
+    text-decoration: underline;
+   
+}
 /* заголовок и спан количество задач не стилизованы */

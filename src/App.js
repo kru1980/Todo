@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import fire from "./firebase";
 import { Row, Col } from "antd";
 
 import Toolbar from "./components/Toolbar/Toolbar";
 import Content from "./components/Content";
 
-import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home";
 import CreateTodo from "./pages/CreateTodo";
-// import Login from "./pages/Login";
+
 import LoginAnt from "./pages/LoginAnt";
 import Logout from "./pages/Logout";
 import "./index.css";
@@ -29,13 +28,14 @@ class App extends Component {
 
   logout() {
     fire.auth().signOut();
+    console.log(this.props);
   }
 
   authListener() {
     fire.auth().onAuthStateChanged(user => {
       console.log(user);
       if (user) {
-        this.setState({ user });
+        this.setState({ user }, () => this.props.history.push("/createTodo"));
         localStorage.setItem("user", user.id);
       } else {
         this.setState({ user: null });
@@ -46,37 +46,30 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Toolbar user={this.state.user} />
+      <div className="App">
+        <Toolbar user={this.state.user} />
 
-          <div>
-            <Row>
-              <Col span={24}>
-                <Content>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <PrivateRoute
-                      path="/createTodo"
-                      component={CreateTodo}
-                      user={this.state.user}
-                    />
+        <div>
+          <Row>
+            <Col span={24}>
+              <Content>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/createTodo" component={CreateTodo} />
+                  <Route path="/login" component={LoginAnt} />
 
-                    <Route path="/login" component={LoginAnt} />
-
-                    <Route
-                      path="/logout"
-                      render={props => <Logout onLogout={this.logout} />}
-                    />
-                  </Switch>
-                </Content>
-              </Col>
-            </Row>
-          </div>
+                  <Route
+                    path="/logout"
+                    render={props => <Logout onLogout={this.logout} />}
+                  />
+                </Switch>
+              </Content>
+            </Col>
+          </Row>
         </div>
-      </Router>
+      </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
