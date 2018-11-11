@@ -9,7 +9,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
-    // this.signup = this.signup.bind(this);
+
   }
 
   login({ email, password }) {
@@ -21,21 +21,7 @@ class Login extends Component {
         console.log(error);
       });
   }
-  // create add user in fb start
-  //   signup(e) {
-  //     e.preventDefault();
-  //     fire
-  //       .auth()
-  //       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-  //       .then(u => {})
-  //       .then(u => {
-  //         console.log(u);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }
-  // created user in fb end
+
 
   //TODO:Необходимо реализовать регистрацию пользователей
   //   === metod aht form start
