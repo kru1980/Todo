@@ -1,8 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
-// import "firebase/storage";
-// import "firebase/firestore";
+import "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyCV6HVbskI_MnJ6VeCbOzGwGEGkR2f_FZw",
@@ -13,13 +12,7 @@ const config = {
   messagingSenderId: "78584915556"
 };
 
-const fire = firebase.initializeApp(config);
+firebase.initializeApp(config);
+firebase.firestore().settings({ timestampsInSnapshots: true });
 
-
-export default fire;
-
-export const fbRef = fire.database().ref();
-export const fbRefTodo = fire
-  .database()
-  .ref()
-  .child("todos");
+export default firebase;

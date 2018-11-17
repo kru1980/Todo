@@ -1,15 +1,14 @@
 import React from "react";
 import { Row, Col } from "antd";
-import SideBar from "../components/SideBar";
+import CreateTodoForm from "../components/CreateTodoForm";
 
 const CreateTodo = () => {
   return (
     <div>
-
       <div>
-      <Row type="flex" justify="center">
+        <Row type="flex" justify="center">
           <Col span={8}>
-            <SideBar />
+            <CreateTodoForm />
           </Col>
         </Row>
       </div>

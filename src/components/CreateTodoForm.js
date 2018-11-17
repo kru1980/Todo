@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, DatePicker, Button, Input, Icon } from "antd";
-import { addTodo } from "../actions/actionsCreators";
+
 import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
@@ -117,9 +117,6 @@ class TimeRelatedForm extends React.Component {
   }
 }
 
-const AntForm = Form.create()(TimeRelatedForm);
+const CreateTodoForm = Form.create()(TimeRelatedForm);
 
-export default connect(
-  null,
-  { addTodo }
-)(AntForm);
+export default CreateTodoForm;

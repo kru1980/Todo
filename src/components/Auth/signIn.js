@@ -1,27 +1,13 @@
 import React, { Component } from "react";
 
-import fire from "../firebase";
 import { Row, Col, Form, Icon, Input, Button } from "antd";
 
 const FormItem = Form.Item;
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.login = this.login.bind(this);
-
-  }
-
-  login({ email, password }) {
-    fire
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(u => {})
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
+  login = ({ email, password }) => {
+    console.log(email, password);
+  };
 
   //TODO:Необходимо реализовать регистрацию пользователей
   //   === metod aht form start
@@ -80,14 +66,6 @@ class Login extends Component {
                 >
                   Вход
                 </Button>
-                {/* <Button
-                  type="primary"
-                  onClick={this.signup}
-                  style={{ marginLeft: "10px" }}
-                  className="login-form-button"
-                >
-                  Регистрация
-                </Button> */}
               </FormItem>
             </Form>
           </Col>
