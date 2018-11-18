@@ -24,12 +24,18 @@
     color: green;
 }
 .toolbarList >li>a:hover{
-    border-bottom: 1px solid black;
     font-weight: bold;
+    border-bottom: 1px solid black;
 
 }
 .toolbarList >li> span
 {
 color: green
 }
-
+.toolbarList--signOut {
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+.toolbarList--signOut >li {
+    margin-right: 20px;
+}

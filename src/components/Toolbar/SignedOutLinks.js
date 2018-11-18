@@ -2,14 +2,19 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import ToolbarLinkUI from "./ToolbarLinkUI";
+import "./Toolbar.css";
 
 export default function SignedOutLinks() {
   return (
     <div>
-      <ToolbarLinkUI to="/createTodo">AddTodo</ToolbarLinkUI>
-      <div className="toolbar-count">
-        <h4>{/* Количество задач: <span>{countTasks}</span> */}</h4>
-      </div>
+      <ul className="toolbarList toolbarList--signOut">
+        <li>
+          <ToolbarLinkUI to="/signIn">SignIn</ToolbarLinkUI>
+        </li>
+        <li>
+          <ToolbarLinkUI to="/signUp">SignUp</ToolbarLinkUI>
+        </li>
+      </ul>
     </div>
   );
 }

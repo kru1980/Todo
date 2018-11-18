@@ -5,6 +5,7 @@ import LayOut from "./components/LayOut";
 import Home from "./pages/Home/Home";
 import CreateTodo from "./pages/CreateTodo";
 import signIn from "./components/Auth/signIn";
+import signUp from "./components/Auth/signUp";
 
 import { Row, Col } from "antd";
 
@@ -27,6 +28,7 @@ class App extends Component {
                   <Route exact path="/" component={Home} />
                   <Route path="/createTodo" component={CreateTodo} />
                   <Route path="/signIn" component={signIn} />
+                  <Route path="/signUp" component={signUp} />
                 </Switch>
               </LayOut>
             </Col>
