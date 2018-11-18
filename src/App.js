@@ -7,7 +7,7 @@ import CreateTodo from "./pages/CreateTodo";
 import signIn from "./components/Auth/signIn";
 import signUp from "./components/Auth/signUp";
 
-import { Row, Col } from "antd";
+import { Layout, Row, Col } from "antd";
 
 import "./index.css";
 
@@ -17,23 +17,32 @@ class App extends Component {
   };
 
   render() {
+    const { Header, Footer, Sider, Content } = Layout;
     return (
-      <div className="App">
-        <Toolbar />
-        <div>
-          <Row>
-            <Col span={24}>
-              <LayOut>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/createTodo" component={CreateTodo} />
-                  <Route path="/signIn" component={signIn} />
-                  <Route path="/signUp" component={signUp} />
-                </Switch>
-              </LayOut>
-            </Col>
-          </Row>
-        </div>
+      <div>
+        <Layout style={{ minHeight: "100vh" }}>
+          <Header
+            style={{
+              position: "fixed",
+              zIndex: 1,
+              width: "100%",
+              background: "orangered"
+            }}
+          >
+            <Toolbar />
+          </Header>
+          <Content style={{ background: "#fff" }}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/createTodo" component={CreateTodo} />
+              <Route path="/signIn" component={signIn} />
+              <Route path="/signUp" component={signUp} />
+            </Switch>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Ant Design ©2018 Created by Ant UED
+          </Footer>
+        </Layout>
       </div>
     );
   }

@@ -10,7 +10,7 @@ import SignedOutLinks from "./SignedOutLinks";
 class Toolbar extends Component {
   render() {
     // const { user, countTasks } = this.props;
-    let user = null;
+    let user = true;
     let countTasks = 33;
 
     const links = user ? (
@@ -18,16 +18,16 @@ class Toolbar extends Component {
     ) : (
       <SignedOutLinks />
     );
-    const styleRow = {
-      height: "64px",
-      background: "orangered"
-    };
+    // const styleRow = {
+    //   height: "64px",
+    //   background: "orangered"
+    // };
 
     return (
       <div>
-        <Row type="flex" align="middle" style={styleRow}>
+        <Row type="flex" align="middle">
           <Col offset={1} span={9}>
-            <ToolbarLinkUI exact to="/">
+            <ToolbarLinkUI exact to="/" className="logo">
               Logo
             </ToolbarLinkUI>
           </Col>
