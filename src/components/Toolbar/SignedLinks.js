@@ -1,23 +1,28 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import ToolbarLinkUI from "./ToolbarLinkUI";
+
 import "./Toolbar.css";
 
-export default function SignedLinks({ countTasks }) {
+export default function SignedLinks({ user, countTasks }) {
   return (
     <div>
-      <NavLink
-        activeStyle={{
-          fontWeight: "bold"
-        }}
-        to="/createTodo"
-      >
-        Добавить
-      </NavLink>
-      <div className="toolbar-count">
-        <h4>
-          Количество задач: <span>{countTasks}</span>
-        </h4>
-      </div>
+      <ul className="toolbarList">
+        <li>
+          <ToolbarLinkUI to="/createTodo">Add Todo</ToolbarLinkUI>
+        </li>
+        <li>
+          <ToolbarLinkUI to="/aboutUser">About User</ToolbarLinkUI>
+        </li>
+        <li>
+          <a onClick={() => console.log("exit")}>Log Out</a>
+        </li>
+        <li>
+          {" "}
+          <span>
+            Количество задач: <span>{countTasks}</span>
+          </span>{" "}
+        </li>
+      </ul>
     </div>
   );
 }

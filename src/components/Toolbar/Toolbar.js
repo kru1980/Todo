@@ -1,51 +1,38 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+
 import { connect } from "react-redux";
-import "./Toolbar.css";
+import { Row, Col } from "antd";
+
+import ToolbarLinkUI from "./ToolbarLinkUI";
+import SignedLinks from "./SignedLinks";
+import SignedOutLinks from "./SignedOutLinks";
 
 class Toolbar extends Component {
   render() {
-    // const { countTasks, user } = this.props;
-    const user = "vata";
+    // const { user, countTasks } = this.props;
+    let user = "vata";
+    let countTasks = 33;
+
+    const links = user ? (
+      <SignedLinks user={user} countTasks={countTasks} />
+    ) : (
+      <SignedOutLinks />
+    );
+    const styleRow = {
+      height: "64px",
+      background: "orangered"
+    };
 
     return (
       <div>
-        <div className="wraper-toolBar">
-          <div className="toolbar-links">
-            <NavLink
-              exact
-              to="/"
-              activeStyle={{
-                fontWeight: "bold"
-              }}
-            >
-              Главная
-            </NavLink>
-
-            {user ? (
-              <NavLink
-                activeStyle={{
-                  fontWeight: "bold"
-                }}
-                to="/createTodo"
-              >
-                Добавить
-              </NavLink>
-            ) : null}
-          </div>
-          <div className="toolbar-count">
-            <h4>
-              Количество задач: <span>33</span>
-            </h4>
-          </div>
-          <div className="toolbar-registration">
-            {user ? (
-              <NavLink to="/logout">Выход</NavLink>
-            ) : (
-              <NavLink to="/login">Вход/Регистрация</NavLink>
-            )}
-          </div>
-        </div>
+        <Row type="flex" align="middle" style={styleRow}>
+          <Col offset={1} span={5}>
+            <ToolbarLinkUI exact to="/">
+              Logo
+            </ToolbarLinkUI>
+          </Col>
+          <Col span={18}>{links}</Col>
+        </Row>
       </div>
     );
   }

@@ -19,7 +19,6 @@ class App extends Component {
     return (
       <div className="App">
         <Toolbar />
-
         <div>
           <Row>
             <Col span={24}>
