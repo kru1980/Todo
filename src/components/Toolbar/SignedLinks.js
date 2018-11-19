@@ -14,11 +14,13 @@ export default function SignedLinks({ user, countTasks }) {
           <ToolbarLinkUI to="/aboutUser">About User</ToolbarLinkUI>
         </li>
         <li>
-          <a onClick={() => console.log("exit")}>Log Out</a>
+          <a className="toolbarLinkUI" onClick={() => console.log("exit")}>
+            Log Out
+          </a>
         </li>
         <li>
           {" "}
-          <span>
+          <span style={{ color: "green" }}>
             Количество задач: <span>{countTasks}</span>
           </span>{" "}
         </li>

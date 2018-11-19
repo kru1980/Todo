@@ -1,37 +1,27 @@
 .toolbarLinkUI {
     color:green;
-    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    transition: all 0.15s;
+    padding-bottom: 2px;
+    
 }
 .toolbarLinkUI:hover {
-    font-weight: bold;
-}
-.toolbarLinkUI:hover {
+    text-decoration: underline;
     color:green;
-    font-weight: bold;
+    
 }
-.activeClassName {
-    border-bottom: 1px solid #000;
-    font-weight: bold;
 
+.activeClassName {
+    text-decoration: underline;
 }
+
 .toolbarList {
     display:  flex;
     justify-content: space-around;
     list-style-type: none;
+}
 
-}
-.toolbarList >li>a{
-    color: green;
-}
-.toolbarList >li>a:hover{
-    font-weight: bold;
-    border-bottom: 1px solid black;
-
-}
-.toolbarList >li> span
-{
-color: green
-}
 .toolbarList--signOut {
     justify-content: flex-end;
     margin-right: 20px;

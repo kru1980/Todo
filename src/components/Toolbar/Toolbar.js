@@ -27,7 +27,7 @@ class Toolbar extends Component {
       <div>
         <Row type="flex" align="middle">
           <Col offset={1} span={9}>
-            <ToolbarLinkUI exact to="/" className="logo">
+            <ToolbarLinkUI exact to="/">
               Logo
             </ToolbarLinkUI>
           </Col>
