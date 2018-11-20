@@ -6,6 +6,7 @@ const authReducers = (state = initial, { type, payload }) => {
   switch (type) {
     case CREATE_USER_SUCCESS:
       console.log("CREATE_USER_SUCCESS");
+      return state;
     default:
       return state;
   }

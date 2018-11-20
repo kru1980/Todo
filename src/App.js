@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Toolbar from "./components/Toolbar/Toolbar";
-import LayOut from "./components/LayOut";
 import Home from "./pages/Home/Home";
 import CreateTodo from "./pages/CreateTodo";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-// import signIn from "./components/Auth/signIn";
-// import signUp from "./components/Auth/signUp";
 
-import { Layout, Row, Col } from "antd";
+import { Layout } from "antd";
 
 import "./index.css";
 
@@ -19,7 +16,7 @@ class App extends Component {
   };
 
   render() {
-    const { Header, Footer, Sider, Content } = Layout;
+    const { Header, Footer, Content } = Layout;
     return (
       <div>
         <Layout style={{ minHeight: "100vh" }}>

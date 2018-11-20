@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import { connect } from "react-redux";
 import { Row, Col } from "antd";
 
 import ToolbarLinkUI from "./ToolbarLinkUI";
@@ -18,10 +17,6 @@ class Toolbar extends Component {
     ) : (
       <SignedOutLinks />
     );
-    // const styleRow = {
-    //   height: "64px",
-    //   background: "orangered"
-    // };
 
     return (
       <div>
