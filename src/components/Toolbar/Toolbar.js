@@ -10,7 +10,7 @@ import SignedOutLinks from "./SignedOutLinks";
 class Toolbar extends Component {
   render() {
     // const { user, countTasks } = this.props;
-    let user = true;
+    let user = false;
     let countTasks = 33;
 
     const links = user ? (

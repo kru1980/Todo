@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div>
         <Layout>
-          <Content style={{ marginTop: "64px" }}>
+          <Content>
             <div style={{ padding: 24, background: "orange" }}>content</div>
           </Content>
 
@@ -16,7 +16,7 @@ class Home extends Component {
             width="400"
             style={{
               padding: 24,
-              marginTop: "64px",
+
               background: "green",
               height: "80vh"
             }}

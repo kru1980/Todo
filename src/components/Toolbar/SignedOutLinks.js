@@ -9,10 +9,10 @@ export default function SignedOutLinks() {
     <div>
       <ul className="toolbarList toolbarList--signOut">
         <li>
-          <ToolbarLinkUI to="/signIn">SignIn</ToolbarLinkUI>
+          <ToolbarLinkUI to="/signInPage">SignIn</ToolbarLinkUI>
         </li>
         <li>
-          <ToolbarLinkUI to="/signUp">SignUp</ToolbarLinkUI>
+          <ToolbarLinkUI to="/signUpPage">SignUp</ToolbarLinkUI>
         </li>
       </ul>
     </div>

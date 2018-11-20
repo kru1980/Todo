@@ -4,8 +4,10 @@ import Toolbar from "./components/Toolbar/Toolbar";
 import LayOut from "./components/LayOut";
 import Home from "./pages/Home/Home";
 import CreateTodo from "./pages/CreateTodo";
-import signIn from "./components/Auth/signIn";
-import signUp from "./components/Auth/signUp";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+// import signIn from "./components/Auth/signIn";
+// import signUp from "./components/Auth/signUp";
 
 import { Layout, Row, Col } from "antd";
 
@@ -31,12 +33,12 @@ class App extends Component {
           >
             <Toolbar />
           </Header>
-          <Content style={{ background: "#fff" }}>
+          <Content style={{ background: "#fff", marginTop: 64 }}>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/createTodo" component={CreateTodo} />
-              <Route path="/signIn" component={signIn} />
-              <Route path="/signUp" component={signUp} />
+              <Route path="/signInPage" component={SignInPage} />
+              <Route path="/signUpPage" component={SignUpPage} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
