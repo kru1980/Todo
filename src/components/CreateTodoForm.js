@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { Form, DatePicker, Button, Input, Icon } from "antd";
+import { createdTodo } from "../store/actions/projectActions";
 
 import locale from "antd/lib/date-picker/locale/ru_RU";
 
@@ -31,7 +33,7 @@ class TimeRelatedForm extends React.Component {
         datePicker: fieldsValue["datePicker"].format("YYYY-MM-DD")
       };
       // console.log("Received values of form: ", values);
-      this.props.addTodo(values);
+      this.props.createdTodo(values);
       this.props.form.resetFields();
       this.props.form.validateFields();
     });
@@ -119,4 +121,13 @@ class TimeRelatedForm extends React.Component {
 
 const CreateTodoForm = Form.create()(TimeRelatedForm);
 
-export default CreateTodoForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    createdTodo: todo => dispatch(createdTodo(todo))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CreateTodoForm);

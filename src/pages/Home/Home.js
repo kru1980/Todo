@@ -1,14 +1,33 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
+import { Layout, Card } from "antd";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 class Home extends Component {
   render() {
     const { Content, Sider } = Layout;
+    const { todos } = this.props;
     return (
       <div>
         <Layout>
           <Content>
-            <div style={{ padding: 24, background: "orange" }}>content</div>
+            <div style={{ padding: 24, background: "orange" }}>
+              {todos &&
+                todos.map(todo => {
+                  return (
+                    <Card
+                      title={todo.title}
+                      extra={<a href="#">More</a>}
+                      style={{ width: 300, marginBottom: 10 }}
+                      key={todo.id}
+                    >
+                      <p>author: {todo.author}</p>
+                      <p>dateTodoCompleted: {todo.dateTodoCompleted}</p>
+                    </Card>
+                  );
+                })}
+            </div>
           </Content>
 
           <Sider
@@ -29,4 +48,15 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    todos: state.firestore.ordered.todos
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "todos" }])
+)(Home);
