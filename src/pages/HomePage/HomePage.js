@@ -5,7 +5,7 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import ProjectLists from "../../components/ProjectLists";
 
-class Home extends Component {
+class HomePage extends Component {
   render() {
     const { Sider, Content } = Layout;
     const { todos } = this.props;
@@ -42,4 +42,4 @@ const mapStateToProps = state => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: "todos" }])
-)(Home);
+)(HomePage);
