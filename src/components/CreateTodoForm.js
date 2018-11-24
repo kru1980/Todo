@@ -1,9 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
+import { Redirect, withRouter } from "react-router-dom";
 
 import { Form, DatePicker, Button, Input, Icon } from "antd";
-import { createdTodo } from "../store/actions/projectActions";
-
 import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
@@ -12,7 +10,7 @@ function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class TimeRelatedForm extends React.Component {
+class createdForm extends React.Component {
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
@@ -36,6 +34,7 @@ class TimeRelatedForm extends React.Component {
       this.props.createdTodo(values);
       this.props.form.resetFields();
       this.props.form.validateFields();
+      this.props.history.push("/");
     });
   };
 
@@ -119,15 +118,6 @@ class TimeRelatedForm extends React.Component {
   }
 }
 
-const CreateTodoForm = Form.create()(TimeRelatedForm);
+const CreateTodoForm = Form.create()(createdForm);
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createdTodo: todo => dispatch(createdTodo(todo))
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(CreateTodoForm);
+export default withRouter(CreateTodoForm);
