@@ -22,7 +22,7 @@ const ProjectLists = props => {
               <List.Item>
                 <Card title={item.title}>
                   <p>{item.title}</p>
-                  {/* {<Link to={`/todo/${item.id}`}>More</Link>} */}
+                  {<Link to={`/todo/${item.id}`}>Далее</Link>}
                 </Card>
               </List.Item>
             )}

@@ -1,36 +1,48 @@
 import React from "react";
-import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 
-import { Card } from "antd";
+import { Card, Spin, Icon, Row, Col } from "antd";
 
-const TodoDetails = props => {
-  console.log("details TodoDetails", props.todo);
-  const { todo } = props;
-
+const TodoDetails = ({ todo }) => {
   if (todo) {
+    const { title, author, dateTodoCompleted, description } = todo;
     return (
-      <Card style={{ marginTop: 67 }}>
-        {/* <p>{todo.title}</p> */}
-        <p>Card content</p>
-        <p>Card content</p>
+      <Card title={title} style={{ marginTop: 67 }}>
+        <p>{description}</p>
+        <p>дата выполнения: {dateTodoCompleted}</p>
+        <p>автор: {author}</p>
       </Card>
     );
   } else {
-    return <div>...isLoading</div>;
+    const antIcon = (
+      <Icon
+        type="loading"
+        style={{ fontSize: 46, color: "orangered", marginTop: "180px" }}
+        spin
+      />
+    );
+    return (
+      <div>
+        <Row type="flex" justify="center" align="middle">
+          <Col>
+            <Spin indicator={antIcon} />
+          </Col>
+        </Row>
+      </div>
+    );
   }
 };
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log("state", state);
-  // console.log("ownProps", ownProps);
   const id = ownProps.match.params.id;
   const todos = state.firestore.data.todos;
-  const todo = todo ? todos[id] : null;
+  const todo = todos ? todos[id] : null;
+
   return {
-    todo
+    todo: todo
   };
 };
 
