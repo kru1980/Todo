@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Layout, Card } from "antd";
+import { Layout, Card, List } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   render() {
@@ -18,7 +19,7 @@ class Home extends Component {
                   return (
                     <Card
                       title={todo.title}
-                      extra={<a href="#">More</a>}
+                      extra={<Link to={`/todo/${todo.id}`}>More</Link>}
                       style={{ width: 300, marginBottom: 10 }}
                       key={todo.id}
                     >
