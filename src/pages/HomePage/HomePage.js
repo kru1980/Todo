@@ -1,39 +1,19 @@
 import React, { Component } from "react";
-import { Layout, Card, List } from "antd";
+import { Layout } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { Link } from "react-router-dom";
+import ProjectLists from "../../components/ProjectLists";
 
 class Home extends Component {
   render() {
-    const { Content, Sider } = Layout;
+    const { Sider, Content } = Layout;
     const { todos } = this.props;
     return (
       <div>
         <Layout>
           <Content>
-            <div style={{ padding: 24, background: "orange" }}>
-              {todos && (
-                <List
-                  grid={{
-                    gutter: 16,
-                    xs: 1,
-                    sm: 1,
-                    md: 2,
-                    lg: 3
-                    // xl: 6,
-                    // xxl: 3
-                  }}
-                  dataSource={todos}
-                  renderItem={item => (
-                    <List.Item>
-                      <Card title={item.title}>{item.title}</Card>
-                    </List.Item>
-                  )}
-                />
-              )}
-            </div>
+            <ProjectLists todos={todos} />
           </Content>
 
           <Sider
@@ -55,13 +35,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     todos: state.firestore.ordered.todos
   };
 };
-
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: "todos" }])

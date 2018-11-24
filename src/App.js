@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Toolbar from "./components/Toolbar/Toolbar";
-import Home from "./pages/Home/Home";
+import HomePage from "./pages/HomePage/HomePage";
 import TodoDetailsPage from "./pages/TodoDetailsPage";
 import CreateTodo from "./pages/CreateTodo";
 import SignInPage from "./pages/SignInPage";
@@ -33,7 +33,7 @@ class App extends Component {
           </Header>
           <Content style={{ background: "#fff", marginTop: 64 }}>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodo} />
               <Route path="/todo/:id" component={TodoDetailsPage} />
               <Route path="/signInPage" component={SignInPage} />
