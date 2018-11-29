@@ -13,7 +13,7 @@ const Toolbar = props => {
 
   let countTasks = 33;
 
-  const links = auth.id ? (
+  const links = auth ? (
     <SignedLinks countTasks={countTasks} />
   ) : (
     <SignedOutLinks />
