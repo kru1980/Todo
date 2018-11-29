@@ -4,15 +4,15 @@ import {
   Input,
   Tooltip,
   Icon,
-  Select,
+  // Select,
   Checkbox,
-  Button,
-  AutoComplete
+  Button
+  // AutoComplete
 } from "antd";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
+// const Option = Select.Option;
+// const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends Component {
   state = {

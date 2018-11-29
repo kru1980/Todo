@@ -4,8 +4,9 @@ import Toolbar from "./components/Toolbar/Toolbar";
 import HomePage from "./pages/HomePage/HomePage";
 import TodoDetailsPage from "./pages/TodoDetailsPage";
 import CreateTodo from "./pages/CreateTodo";
-import SignInPage from "./pages/SignInPage";
+// import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import SignIn from "./components/Auth/SignIn";
 
 import { Layout } from "antd";
 
@@ -36,7 +37,7 @@ class App extends Component {
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodo} />
               <Route path="/todo/:id" component={TodoDetailsPage} />
-              <Route path="/signInPage" component={SignInPage} />
+              <Route path="/signIn" component={SignIn} />
               <Route path="/signUpPage" component={SignUpPage} />
             </Switch>
           </Content>

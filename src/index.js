@@ -21,19 +21,22 @@ const store = createStore(
     applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
     reactReduxFirebase(firebase, {
       userProfile: "users",
-      useFirestoreForProfile: true
+      useFirestoreForProfile: true,
+      attachAuthIsReady: true
     }),
     reduxFirestore(firebase)
   )
 );
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
 
-  document.getElementById("root")
-);
-registerServiceWorker();
+    document.getElementById("root")
+  );
+  registerServiceWorker();
+});

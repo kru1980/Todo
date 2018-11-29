@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { Form, DatePicker, Button, Input, Icon } from "antd";
 import locale from "antd/lib/date-picker/locale/ru_RU";

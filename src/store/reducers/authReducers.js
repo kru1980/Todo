@@ -1,6 +1,6 @@
 import {
-  CREATE_USER_SUCCESS,
-  CREATE_USER_FAIL,
+  // CREATE_USER_SUCCESS,
+  // CREATE_USER_FAIL,
   SIGNIN_USER_SUCCESS,
   SIGNIN_USER_FAIL,
   SIGNOUT_SUCCESS
@@ -18,7 +18,7 @@ const authReducers = (state = initial, action) => {
         ...state,
         authError: null
       };
-      return state;
+
     case SIGNIN_USER_FAIL:
       console.log("SIGNIN_USER_FAIL");
       return {
