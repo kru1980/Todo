@@ -19,7 +19,10 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
-    reactReduxFirebase(firebase),
+    reactReduxFirebase(firebase, {
+      userProfile: "users",
+      useFirestoreForProfile: true
+    }),
     reduxFirestore(firebase)
   )
 );

@@ -1,9 +1,10 @@
 import React from "react";
 import ToolbarLinkUI from "./ToolbarLinkUI";
-
+import { connect } from "react-redux";
+import { signOut } from "../../store/actions/authActions";
 import "./Toolbar.css";
 
-export default function SignedLinks({ user, countTasks }) {
+const SignedLinks = props => {
   return (
     <div>
       <ul className="toolbarList">
@@ -21,10 +22,19 @@ export default function SignedLinks({ user, countTasks }) {
         <li>
           {" "}
           <span style={{ color: "green" }}>
-            Количество задач: <span>{countTasks}</span>
+            Количество задач: <span>{props.countTasks}</span>
           </span>{" "}
         </li>
       </ul>
     </div>
   );
-}
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignedLinks);

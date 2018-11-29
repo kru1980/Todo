@@ -1,23 +1,27 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { signInAction } from "../../store/actions/authActions";
 import { Form, Icon, Input, Button } from "antd";
+import { auth } from "firebase";
+import { Redirect } from "react-router-dom";
 
 const FormItem = Form.Item;
 
-class Login extends Component {
+class SignInForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Сохраненные значения из формы Login: ", values);
-        //TODO: После авторизации пользователя сделать редирект
-        this.login(values);
+        this.props.signInAction(values);
       }
     });
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator, authError } = this.props.form;
+
+    console.log("this.props from signIn", this.props);
 
     return (
       <div>
@@ -58,12 +62,35 @@ class Login extends Component {
               Вход
             </Button>
           </FormItem>
+
+          {authError ? (
+            <FormItem>
+              <div>{authError}</div>
+            </FormItem>
+          ) : null}
         </Form>
       </div>
     );
   }
 }
 
-const WrappedNormalLoginForm = Form.create()(Login);
+const SignIn = Form.create()(SignInForm);
 
-export default WrappedNormalLoginForm;
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    authError: auth.authError
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signInAction: existingUser => dispatch(signInAction(existingUser))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn);
