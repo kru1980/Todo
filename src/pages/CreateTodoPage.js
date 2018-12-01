@@ -9,7 +9,7 @@ const CreateTodoPage = props => {
   const { auth } = props;
 
   if (!auth.uid) {
-    return <Redirect to="signIn" />;
+    return <Redirect to="signInPage" />;
   } else {
     return (
       <div>

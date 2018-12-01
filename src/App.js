@@ -6,16 +6,16 @@ import TodoDetailsPage from "./pages/TodoDetailsPage";
 import CreateTodoPage from "./pages/CreateTodoPage";
 import AboutPage from "./pages/AboutPage";
 import SignUpPage from "./pages/SignUpPage";
-import SignIn from "./components/Auth/SignIn";
+import SignInPage from "./pages/SignInPage";
 
 import { Layout } from "antd";
 
 import "./index.css";
 
 class App extends Component {
-  logout = () => {
-    console.log(this.props);
-  };
+  // logout = () => {
+  //   console.log(this.props);
+  // };
 
   render() {
     const { Header, Footer, Content } = Layout;
@@ -38,7 +38,7 @@ class App extends Component {
               <Route path="/createTodo" component={CreateTodoPage} />
               <Route path="/aboutPage" component={AboutPage} />
               <Route path="/todo/:id" component={TodoDetailsPage} />
-              <Route path="/signIn" component={SignIn} />
+              <Route path="/signInPage" component={SignInPage} />
               <Route path="/signUpPage" component={SignUpPage} />
             </Switch>
           </Content>

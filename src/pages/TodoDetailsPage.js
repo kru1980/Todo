@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 const TodoDetailsPage = ({ auth }) => {
   if (!auth.uid) {
-    return <Redirect to="/signIn" />;
+    return <Redirect to="/signInPage" />;
   }
 
   return (
