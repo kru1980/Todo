@@ -1,27 +1,35 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { signInAction } from "../../store/actions/authActions";
 import { Form, Icon, Input, Button, Row, Col } from "antd";
-import { auth } from "firebase";
+
 import { Redirect, withRouter } from "react-router-dom";
 import { compose } from "redux";
 
 const FormItem = Form.Item;
 
 class SignInForm extends Component {
+  // static propTypes = {
+  //   auth: React.PropTypes.object,
+  //   authError: PropTypes.any
+  // };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.signInAction(values);
-        this.props.history.push("/");
       }
     });
   };
 
   render() {
-    const { getFieldDecorator, authError } = this.props.form;
-
+    const { getFieldDecorator } = this.props.form;
+    const { auth } = this.props;
+    console.log("from decorator form props.form", this.props.form);
+    console.log("from decorator form props", this.props);
+    if (auth.uid) return <Redirect to="/" />;
     return (
       <div>
         <Row type="flex" justify="center">
@@ -64,11 +72,7 @@ class SignInForm extends Component {
                 </Button>
               </FormItem>
 
-              {authError ? (
-                <FormItem>
-                  <div>{authError}</div>
-                </FormItem>
-              ) : null}
+              <FormItem>{getFieldDecorator("authError")(<Input />)}</FormItem>
             </Form>
           </Col>
         </Row>
@@ -77,13 +81,23 @@ class SignInForm extends Component {
   }
 }
 
-const SignIn = Form.create()(SignInForm);
+const SignIn = Form.create({
+  mapPropsToFields(props) {
+    console.log("props in Form.create", props);
+
+    return {
+      authError: Form.createFormField({
+        ...props.authError,
+        value: props.auth.authError
+      })
+    };
+  }
+})(SignInForm);
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
-    authError: auth.authError
+    authError: state.auth.authError,
+    auth: state.firebase.auth
   };
 };
 

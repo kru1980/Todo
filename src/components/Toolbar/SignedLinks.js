@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
 import "./Toolbar.css";
 
-const SignedLinks = props => {
+const SignedLinks = ({ signOut, countTasks }) => {
   return (
     <div>
       <ul className="toolbarList">
@@ -12,29 +12,25 @@ const SignedLinks = props => {
           <ToolbarLinkUI to="/createTodo">Add Todo</ToolbarLinkUI>
         </li>
         <li>
-          <ToolbarLinkUI to="/aboutUser">About User</ToolbarLinkUI>
+          <ToolbarLinkUI to="/aboutPage">About User</ToolbarLinkUI>
         </li>
         <li>
-          <a className="toolbarLinkUI" onClick={() => console.log("exit")}>
+          <a className="toolbarLinkUI" onClick={signOut}>
             Log Out
           </a>
         </li>
         <li>
           {" "}
           <span style={{ color: "green" }}>
-            Количество задач: <span>{props.countTasks}</span>
+            Количество задач: <span>{countTasks}</span>
           </span>{" "}
         </li>
       </ul>
     </div>
   );
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    signOut: () => dispatch(signOut())
-  };
-};
+
 export default connect(
   null,
-  mapDispatchToProps
+  { signOut }
 )(SignedLinks);

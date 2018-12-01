@@ -1,17 +1,10 @@
 import React from "react";
-import { Row, Col } from "antd";
-import SignIn from "../components/Auth/SignIn";
+import PropTypes from "prop-types";
 
-const SignInPage = () => {
-  return (
-    <div>
-      <Row type="flex" justify="center">
-        <Col span={8}>
-          <SignIn />
-        </Col>
-      </Row>
-    </div>
-  );
+const SignInPage = props => {
+  return <div />;
 };
+
+SignInPage.propTypes = {};
 
 export default SignInPage;

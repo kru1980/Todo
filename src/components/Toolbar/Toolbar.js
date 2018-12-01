@@ -9,11 +9,10 @@ import { connect } from "react-redux";
 
 const Toolbar = props => {
   const { auth } = props;
-  console.log("Toolbar", auth);
 
   let countTasks = 33;
 
-  const links = auth ? (
+  const links = auth.uid ? (
     <SignedLinks countTasks={countTasks} />
   ) : (
     <SignedOutLinks />
@@ -33,7 +32,6 @@ const Toolbar = props => {
   );
 };
 const mapSateToProps = state => {
-  console.log("state toolbar", state);
   return {
     auth: state.firebase.auth
   };

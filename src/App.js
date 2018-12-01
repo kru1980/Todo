@@ -3,8 +3,8 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import Toolbar from "./components/Toolbar/Toolbar";
 import HomePage from "./pages/HomePage/HomePage";
 import TodoDetailsPage from "./pages/TodoDetailsPage";
-import CreateTodo from "./pages/CreateTodo";
-// import SignInPage from "./pages/SignInPage";
+import CreateTodoPage from "./pages/CreateTodoPage";
+import AboutPage from "./pages/AboutPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignIn from "./components/Auth/SignIn";
 
@@ -35,7 +35,8 @@ class App extends Component {
           <Content style={{ background: "#fff", marginTop: 64 }}>
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route path="/createTodo" component={CreateTodo} />
+              <Route path="/createTodo" component={CreateTodoPage} />
+              <Route path="/aboutPage" component={AboutPage} />
               <Route path="/todo/:id" component={TodoDetailsPage} />
               <Route path="/signIn" component={SignIn} />
               <Route path="/signUpPage" component={SignUpPage} />
