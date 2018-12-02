@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import ProjectLists from "../../components/ProjectLists";
+import SiderComponent from "../../components/SiderComponent";
 import { Layout } from "antd";
 
 class Home extends Component {
@@ -12,7 +13,7 @@ class Home extends Component {
     return (
       <div>
         <Layout>
-          <Content>
+          <Content style={{ background: "lightgrey" }}>
             <ProjectLists todos={todos} />
           </Content>
 
@@ -22,11 +23,10 @@ class Home extends Component {
             style={{
               padding: 24,
 
-              background: "green",
-              height: "80vh"
+              background: "lightgrey"
             }}
           >
-            <h4>hello sidebar</h4>
+            <SiderComponent todos={todos} />
           </Sider>
         </Layout>
       </div>
@@ -38,7 +38,7 @@ const mapStateToProps = state => {
   console.log("state from Home", state);
   return {
     todos: state.firestore.ordered.todos,
-    users: state.firestore.ordered.users
+    users: state.firestore
   };
 };
 export default compose(

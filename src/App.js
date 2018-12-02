@@ -7,6 +7,7 @@ import CreateTodoPage from "./pages/CreateTodoPage";
 import AboutPage from "./pages/AboutPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import { Layout } from "antd";
 
@@ -40,6 +41,7 @@ class App extends Component {
               <Route path="/todo/:id" component={TodoDetailsPage} />
               <Route path="/signInPage" component={SignInPage} />
               <Route path="/signUpPage" component={SignUpPage} />
+              <Route component={NotFoundPage} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>

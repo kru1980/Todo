@@ -26,6 +26,7 @@ class RegistrationForm extends Component {
       if (!err) {
         console.log("Получи значения из RegistrationForm: ", values);
         this.props.signUpAction({ ...values });
+        this.props.form.resetFields();
       }
     });
   };

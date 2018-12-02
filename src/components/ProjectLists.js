@@ -16,7 +16,7 @@ const ProjectLists = props => {
           </Row>
         </div>
       ) : (
-        <div style={{ padding: 24, background: "orange" }}>
+        <div style={{ padding: 24 }}>
           {todos && (
             <List
               grid={{
