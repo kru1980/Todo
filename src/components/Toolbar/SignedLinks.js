@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
 import "./Toolbar.css";
 
-const SignedLinks = ({ signOut, countTasks }) => {
+const SignedLinks = ({ signOut, countTasks, profile }) => {
+  const { nickname } = profile;
   return (
     <div>
       <ul className="toolbarList">
@@ -22,7 +23,7 @@ const SignedLinks = ({ signOut, countTasks }) => {
         <li>
           {" "}
           <span style={{ color: "green" }}>
-            Количество задач: <span>{countTasks}</span>
+            Привет: <span>{nickname}</span>
           </span>{" "}
         </li>
       </ul>

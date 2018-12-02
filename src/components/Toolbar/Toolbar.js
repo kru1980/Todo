@@ -8,12 +8,12 @@ import SignedOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
 
 const Toolbar = props => {
-  const { auth } = props;
+  const { auth, profile } = props;
 
   let countTasks = 33;
 
   const links = auth.uid ? (
-    <SignedLinks countTasks={countTasks} />
+    <SignedLinks profile={profile} countTasks={countTasks} />
   ) : (
     <SignedOutLinks />
   );
@@ -33,7 +33,8 @@ const Toolbar = props => {
 };
 const mapSateToProps = state => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   };
 };
 export default connect(mapSateToProps)(Toolbar);

@@ -9,18 +9,25 @@ import { Redirect } from "react-router-dom";
 import SignIn from "../components/Auth/SignIn";
 
 const SignInPage = ({ auth, authError, signInAction }) => {
+  const onClose = function(e) {};
   if (auth.uid) return <Redirect to="/" />;
   return (
     <div>
       <Row type="flex" justify="center">
         <Col span={8}>
           <SignIn
+            onClose={onClose}
             authError={authError}
             auth={auth}
             signInAction={signInAction}
           />
           {authError ? (
-            <Alert message={`ошибка сервера : ${authError}`} type="error" />
+            <Alert
+              closable
+              onClose={onClose}
+              message={`ошибка сервера : ${authError}`}
+              type="error"
+            />
           ) : null}
         </Col>
       </Row>

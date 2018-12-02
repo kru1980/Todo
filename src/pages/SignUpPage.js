@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { signUpAction } from "../store/actions/authActions";
 
 const SignUpPage = ({ signUpAction, authError, auth }) => {
+  const onClose = function(e) {};
   if (auth.uid) return <Redirect to="/" />;
   return (
     <div>
@@ -13,7 +14,12 @@ const SignUpPage = ({ signUpAction, authError, auth }) => {
         <Col span={12}>
           <SignUp signUpAction={signUpAction} />
           {authError ? (
-            <Alert message={`ошибка сервера : ${authError}`} type="error" />
+            <Alert
+              closable
+              onClose={onClose}
+              message={`ошибка сервера : ${authError}`}
+              type="error"
+            />
           ) : null}
         </Col>
       </Row>
