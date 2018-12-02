@@ -25,6 +25,7 @@ class RegistrationForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Получи значения из RegistrationForm: ", values);
+        this.props.signUpAction({ ...values });
       }
     });
   };

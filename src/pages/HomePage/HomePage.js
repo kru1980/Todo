@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import ProjectLists from "../../components/ProjectLists";
+import { Layout } from "antd";
 
 class Home extends Component {
   render() {
@@ -18,7 +18,7 @@ class Home extends Component {
 
           <Sider
             theme="light"
-            width="400"
+            width="280"
             style={{
               padding: 24,
 
@@ -35,8 +35,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("state from Home", state);
   return {
-    todos: state.firestore.ordered.todos
+    todos: state.firestore.ordered.todos,
+    users: state.firestore.ordered.users
   };
 };
 export default compose(
