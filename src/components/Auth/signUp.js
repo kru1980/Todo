@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Form,
   Input,
@@ -167,7 +168,8 @@ class RegistrationForm extends Component {
             valuePropName: "checked"
           })(
             <Checkbox onChange={this.onChange}>
-              Я прочитал и <a href="">согласен</a>
+              Я прочитал и{" "}
+              <Link to="/aboutPage">согласен c политикой сайта</Link>
             </Checkbox>
           )}
         </FormItem>
@@ -177,6 +179,7 @@ class RegistrationForm extends Component {
             type="primary"
             htmlType="submit"
             disabled={this.state.disabledButton}
+            block
           >
             Регистрация
           </Button>

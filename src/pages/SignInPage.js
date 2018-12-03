@@ -14,7 +14,7 @@ const SignInPage = ({ auth, authError, signInAction }) => {
   return (
     <div>
       <Row type="flex" justify="center">
-        <Col span={8}>
+        <Col xs={{ span: 16 }} md={{ span: 12 }} lg={{ span: 6 }}>
           <SignIn
             onClose={onClose}
             authError={authError}

@@ -22,7 +22,6 @@ class Home extends Component {
             width="280"
             style={{
               padding: 24,
-
               background: "lightgrey"
             }}
           >

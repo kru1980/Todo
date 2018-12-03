@@ -11,7 +11,7 @@ const SignUpPage = ({ signUpAction, authError, auth }) => {
   return (
     <div>
       <Row type="flex" justify="center" align="middle">
-        <Col span={12}>
+        <Col xs={{ span: 16 }} md={{ span: 12 }} lg={{ span: 8 }}>
           <SignUp signUpAction={signUpAction} />
           {authError ? (
             <Alert
