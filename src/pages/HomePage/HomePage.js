@@ -34,7 +34,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state from Home", state);
+  // console.log("state from Home", state);
   return {
     todos: state.firestore.ordered.todos,
     users: state.firestore

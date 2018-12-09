@@ -1,10 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Card, List, Spin, Icon, Row, Col } from "antd";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
+import { deleteTodoAcation } from "../store/actions/projectActions";
+import { Card, List, Spin, Icon, Row, Col, Button } from "antd";
 
 const ProjectLists = props => {
-  const { todos } = props;
+  const { todos, deleteTodoAcation } = props;
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+  console.log(props.deleteTodoAcation);
+
   return (
     <div>
       {!todos ? (
@@ -16,9 +21,11 @@ const ProjectLists = props => {
           </Row>
         </div>
       ) : (
-        <div style={{ padding: 24 }}>
+        <div>
           {todos && (
             <List
+              style={{ marginTop: "30px" }}
+              bordered={true}
               grid={{
                 gutter: 16,
                 xs: 1,
@@ -29,9 +36,33 @@ const ProjectLists = props => {
               dataSource={todos}
               renderItem={item => (
                 <List.Item>
-                  <Card title={item.title}>
+                  <Card
+                    title={item.title}
+                    headStyle={{ background: "lightgreen" }}
+                    bordered={false}
+                    hoverable={true}
+                  >
                     <p>{item.title}</p>
-                    {<Link to={`/todo/${item.id}`}>Далее</Link>}
+                    <p>Автор: {item.author}</p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-around"
+                      }}
+                    >
+                      <Button
+                        onClick={() => props.history.push(`/todo/${item.id}`)}
+                        style={{ background: "lightgreen" }}
+                      >
+                        Описание
+                      </Button>
+                      <Button
+                        onClick={() => deleteTodoAcation(item.id)}
+                        type="danger"
+                      >
+                        Remove
+                      </Button>
+                    </div>
                   </Card>
                 </List.Item>
               )}
@@ -43,4 +74,10 @@ const ProjectLists = props => {
   );
 };
 
-export default ProjectLists;
+export default compose(
+  connect(
+    null,
+    { deleteTodoAcation }
+  ),
+  withRouter
+)(ProjectLists);
