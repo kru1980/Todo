@@ -20,3 +20,14 @@ export const hakLength = state => {
   return todoLength;
 };
 //================================================
+
+// export const filterAuthUserTodos = (auth, todos) => {
+//   // const userId = auth.uid;
+//   const todosUser = R.filter(
+//     R.where({
+//       authorId: R.equals(auth.uid)
+//     })
+//   );
+
+//   return {todosUser(todos)};
+// };

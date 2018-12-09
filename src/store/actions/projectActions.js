@@ -48,3 +48,10 @@ export const deleteTodoAcation = id => {
       });
   };
 };
+
+// export const filterUserAction =()=>{
+//   return (dispatch, getState, {getFirestore, getFirebase}) =>{
+//     const fireStore = getFirestore();
+
+//   }
+// }

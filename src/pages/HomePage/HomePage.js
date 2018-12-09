@@ -9,12 +9,12 @@ import { Layout } from "antd";
 class Home extends Component {
   render() {
     const { Sider, Content } = Layout;
-    const { todos } = this.props;
+    const { todos, data, auth } = this.props;
     return (
       <div>
         <Layout>
           <Content style={{ background: "lightgrey" }}>
-            <ProjectLists todos={todos} />
+            <ProjectLists todos={todos} auth={auth} data={data} />
           </Content>
 
           <Sider
@@ -34,10 +34,9 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log("state from Home", state);
   return {
     todos: state.firestore.ordered.todos,
-    users: state.firestore
+    auth: state.firebase.auth
   };
 };
 export default compose(
