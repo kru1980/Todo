@@ -15,6 +15,12 @@ import firebase from "./store/fb_config";
 import App from "./App";
 import "./index.css";
 
+import { LocaleProvider } from "antd";
+import ru_RU from "antd/lib/locale-provider/ru_RU";
+import moment from "moment";
+import "moment/locale/ru";
+moment.locale("ru");
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(
@@ -32,7 +38,9 @@ store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
     <Provider store={store}>
       <Router>
-        <App />
+        <LocaleProvider locale={ru_RU}>
+          <App />
+        </LocaleProvider>
       </Router>
     </Provider>,
 
