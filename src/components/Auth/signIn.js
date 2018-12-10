@@ -66,7 +66,7 @@ class SignInForm extends Component {
             <a
               onClick={this.forgotPassword}
               className="login-form-forgot"
-              href=""
+              href="/"
             >
               Забыли пароль?
             </a>
