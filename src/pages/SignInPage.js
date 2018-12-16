@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { signInAction } from "../store/actions/authActions";
 import { Row, Col, Alert } from "antd";

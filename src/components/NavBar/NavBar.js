@@ -8,6 +8,8 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PandaIcon from "./Logo";
 
+import "./NavBar.css";
+
 const MenuItemGroup = Menu.ItemGroup;
 // const { auth, profile } = props;
 const authuid = false;
@@ -15,7 +17,7 @@ const authuid = false;
 
 class NavBar extends React.Component {
   state = {
-    current: "mail"
+    current: "logo"
   };
 
   handleClick = e => {
@@ -37,16 +39,14 @@ class NavBar extends React.Component {
         selectedKeys={[this.state.current]}
         mode="horizontal"
         theme="dark"
-        style={{ lineHeight: "48px" }}
+        style={{ lineHeight: "64px" }}
       >
-        <Menu.Item key="logo">Logo</Menu.Item>
+        <Menu.Item style={{ paddingLeft: 20 }} key="logo" title="Logo">
+          Logo
+        </Menu.Item>
         <Menu.Item key="aboutPage">
           <Icon type="appstore" />
           About
-        </Menu.Item>
-        <Menu.Item key="signInPage">
-          <Icon type="appstore" />
-          Navigation Three
         </Menu.Item>
       </Menu>
     );

@@ -8,17 +8,12 @@ import AboutPage from "./pages/AboutPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import NavBar from "./components/NavBar/NavBar";
 
-import { Layout, Row, Col } from "antd";
+import { Layout } from "antd";
 
 import "./index.css";
 
 class App extends Component {
-  // logout = () => {
-  //   console.log(this.props);
-  // };
-
   render() {
     const { Header, Footer, Content } = Layout;
     return (
@@ -33,22 +28,6 @@ class App extends Component {
             }}
           >
             <Toolbar />
-          </Header>
-
-          <Header
-            style={{
-              marginTop: 80,
-              lineHeight: 64
-            }}
-          >
-            <Row>
-              {/* <Col span={3} style={{ color: "white" }}>
-                Logo
-              </Col> */}
-              <Col span={20} offset={4}>
-                <NavBar />
-              </Col>
-            </Row>
           </Header>
           <Content style={{ background: "#fff", marginTop: 64 }}>
             <Switch>

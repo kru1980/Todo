@@ -4,33 +4,19 @@ import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import { deleteTodoAcation } from "../store/actions/projectActions";
 import { Card, List, Spin, Icon, Row, Col, Button } from "antd";
-// import {filterAuthUserTodos} from "../../selectors"
-// const R = require("ramda");
-import * as R from "ramda";
 
-// const { filter, where, compose, equals } = R;
 const ProjectLists = props => {
-  const { todos, deleteTodoAcation, auth } = props;
-  // console.log(todos);
+  const { todos, deleteTodoAcation } = props;
 
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
-  // const filterTodos = R.compose(
-  //   R.filter(
-  //     R.where({
-  //       authorId: R.equals(auth.uid)
-  //     })
-  //   )
-  // );
-  // console.log(filterTodos(todos));
-
-  const filterUser = () => {
-    return (
-      <div>
-        <Button>фильтр</Button>
-      </div>
-    );
-  };
+  // const filterUser = () => {
+  //   return (
+  //     <div>
+  //       <Button>фильтр</Button>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div>
@@ -46,7 +32,7 @@ const ProjectLists = props => {
         <div>
           {todos && (
             <List
-              header={filterUser()}
+              // header={filterUser()}
               style={{ marginTop: "30px" }}
               bordered={true}
               grid={{

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Row, Col } from "antd";
+import PandaIcon from "../NavBar/Logo";
 
 import ToolbarLinkUI from "./ToolbarLinkUI";
 import SignedLinks from "./SignedLinks";
@@ -20,13 +21,15 @@ const Toolbar = props => {
 
   return (
     <div>
-      <Row type="flex" align="middle">
-        <Col offset={1} span={9}>
+      <Row type="flex">
+        <Col xs={{ span: 1, offset: 0 }} md={{ span: 3, offset: 2 }}>
           <ToolbarLinkUI exact to="/">
-            Logo
+            <PandaIcon />
           </ToolbarLinkUI>
         </Col>
-        <Col span={14}>{links}</Col>
+        <Col xs={{ span: 22, offset: 1 }} md={{ span: 17, offset: 2 }}>
+          {links}
+        </Col>
       </Row>
     </div>
   );
