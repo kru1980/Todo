@@ -6,17 +6,11 @@ import { deleteTodoAcation } from "../store/actions/projectActions";
 import { Card, List, Spin, Icon, Row, Col, Button } from "antd";
 
 const ProjectLists = props => {
-  const { todos, deleteTodoAcation } = props;
+  const { todos, deleteTodoAcation, auth } = props;
+  console.log("auth", auth);
+  console.log("todos", todos);
 
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-
-  // const filterUser = () => {
-  //   return (
-  //     <div>
-  //       <Button>фильтр</Button>
-  //     </div>
-  //   );
-  // };
 
   return (
     <div>
@@ -56,7 +50,7 @@ const ProjectLists = props => {
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "space-around"
+                        justifyContent: "flex-end"
                       }}
                     >
                       <Button
@@ -65,12 +59,15 @@ const ProjectLists = props => {
                       >
                         Описание
                       </Button>
-                      <Button
-                        onClick={() => deleteTodoAcation(item.id)}
-                        type="danger"
-                      >
-                        Удалить
-                      </Button>
+                      {auth.uid ? (
+                        <Button
+                          onClick={() => deleteTodoAcation(item.id)}
+                          type="danger"
+                          style={{ marginLeft: 10 }}
+                        >
+                          Удалить
+                        </Button>
+                      ) : null}
                     </div>
                   </Card>
                 </List.Item>
