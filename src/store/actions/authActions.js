@@ -25,14 +25,23 @@ export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
 
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        dispatch({ type: SIGNOUT_SUCCESS });
-      });
+    firebase.logout().then(() => {
+      dispatch({ type: SIGNOUT_SUCCESS });
+    });
   };
 };
+// export const signOut = () => {
+//   return (dispatch, getState, { getFirebase }) => {
+//     const firebase = getFirebase();
+
+//     firebase
+//       .auth()
+//       .signOut()
+//       .then(() => {
+//         dispatch({ type: SIGNOUT_SUCCESS });
+//       });
+//   };
+// };
 
 export const signUpAction = ({ email, password, nickname }, rest) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -41,6 +50,7 @@ export const signUpAction = ({ email, password, nickname }, rest) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
+
       .then(response => {
         return firestore
           .collection("users")
@@ -50,6 +60,13 @@ export const signUpAction = ({ email, password, nickname }, rest) => {
             password,
             nickname
           });
+      })
+      .then(response => {
+        var user = firebase.auth().currentUser;
+        user.sendEmailVerification().then(function() {
+          // Email sent.
+          console.log("user", user);
+        });
       })
       .then(() => dispatch({ type: CREATE_USER_SUCCESS }))
       .catch(error => {
