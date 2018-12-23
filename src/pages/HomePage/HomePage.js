@@ -40,4 +40,4 @@ const mapStateToProps = state => {
 export default compose(
   firestoreConnect([{ collection: "todos" }]),
   connect(mapStateToProps)
-)(Home);
+)(HomePage);
