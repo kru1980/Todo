@@ -4,7 +4,7 @@ import Toolbar from "./components/Toolbar/Toolbar";
 import HomePage from "./pages/HomePage/HomePage";
 import TodoDetailsPage from "./pages/TodoDetailsPage";
 import CreateTodoPage from "./pages/CreateTodoPage";
-import AboutPage from "./pages/AboutPage";
+import ProfilePage from "./pages/ProfilePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -33,7 +33,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodoPage} />
-              <Route path="/aboutPage" component={AboutPage} />
+              <Route path="/profilePage" component={ProfilePage} />
               <Route path="/todo/:id" component={TodoDetailsPage} />
               <Route path="/signInPage" component={SignInPage} />
               <Route path="/signUpPage" component={SignUpPage} />

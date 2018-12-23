@@ -13,16 +13,22 @@ class Home extends Component {
     return (
       <div>
         <Layout>
-          <Sider
+          {/* <Sider
             theme="light"
             width="260"
             breakpoint="md"
             collapsedWidth="0"
             style={{ color: "white", zIndex: 9999, padding: "20px 0" }}
-          >
+            >
             <SiderComponent todos={todos} />
-          </Sider>
+          </Sider> */}
           <Content style={{ background: "lightgrey" }}>
+            <div>
+              <h3>
+                Главная страница, на которой представленны задачи всех
+                пользователей
+              </h3>
+            </div>
             <ProjectLists todos={todos} auth={auth} data={data} />
           </Content>
         </Layout>

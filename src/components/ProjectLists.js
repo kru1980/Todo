@@ -26,15 +26,16 @@ const ProjectLists = props => {
         <div>
           {todos && (
             <List
-              // header={filterUser()}
               style={{ marginTop: "30px" }}
               bordered={true}
               grid={{
                 gutter: 16,
                 xs: 1,
-                sm: 1,
-                md: 2,
-                lg: 3
+                sm: 2,
+                md: 3,
+                lg: 4,
+                xl: 4,
+                xxl: 6
               }}
               dataSource={todos}
               renderItem={item => (
@@ -59,7 +60,7 @@ const ProjectLists = props => {
                       >
                         Описание
                       </Button>
-                      {auth.uid ? (
+                      {/* {auth.uid ? (
                         <Button
                           onClick={() => deleteTodoAcation(item.id)}
                           type="danger"
@@ -67,7 +68,7 @@ const ProjectLists = props => {
                         >
                           Удалить
                         </Button>
-                      ) : null}
+                      ) : null} */}
                     </div>
                   </Card>
                 </List.Item>

@@ -58,16 +58,17 @@ export const signUpAction = ({ email, password, nickname }, rest) => {
           .set({
             email,
             password,
-            nickname
+            nickname,
+            role: "user"
           });
       })
-      .then(response => {
-        var user = firebase.auth().currentUser;
-        user.sendEmailVerification().then(function() {
-          // Email sent.
-          console.log("user", user);
-        });
-      })
+      // .then(response => {
+      //   var user = firebase.auth().currentUser;
+      //   user.sendEmailVerification().then(function() {
+      //     // Email sent.
+      //     console.log("user", user);
+      //   });
+      // })
       .then(() => dispatch({ type: CREATE_USER_SUCCESS }))
       .catch(error => {
         dispatch({ type: CREATE_USER_FAIL, error });

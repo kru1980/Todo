@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Row, Col, Layout } from "antd";
 
-const AboutPage = ({ auth }) => {
+const ProfilePage = ({ auth }) => {
   if (!auth.uid) return <Redirect to="/signInPage" />;
   const { Header, Footer, Sider, Content } = Layout;
   return (
@@ -18,4 +18,4 @@ const mapStateToProps = state => {
     auth: state.firebase.auth
   };
 };
-export default connect(mapStateToProps)(AboutPage);
+export default connect(mapStateToProps)(ProfilePage);

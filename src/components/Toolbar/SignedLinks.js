@@ -13,7 +13,7 @@ const SignedLinks = ({ signOut, countTasks, profile }) => {
           <ToolbarLinkUI to="/createTodo">Add Todo</ToolbarLinkUI>
         </li>
         <li>
-          <ToolbarLinkUI to="/aboutPage">About User</ToolbarLinkUI>
+          <ToolbarLinkUI to="/profilePage">Profile</ToolbarLinkUI>
         </li>
         <li>
           <a className="toolbarLinkUI" onClick={signOut}>
