@@ -1,9 +1,11 @@
 import React from "react";
 import ToolbarLinkUI from "./ToolbarLinkUI";
-
+import { connect } from "react-redux";
+import { signOut } from "../../store/actions/authActions";
 import "./Toolbar.css";
 
-export default function SignedLinks({ user, countTasks }) {
+const SignedLinks = ({ signOut, countTasks, profile }) => {
+  const { nickname } = profile;
   return (
     <div>
       <ul className="toolbarList">
@@ -11,20 +13,25 @@ export default function SignedLinks({ user, countTasks }) {
           <ToolbarLinkUI to="/createTodo">Add Todo</ToolbarLinkUI>
         </li>
         <li>
-          <ToolbarLinkUI to="/aboutUser">About User</ToolbarLinkUI>
+          <ToolbarLinkUI to="/aboutPage">About User</ToolbarLinkUI>
         </li>
         <li>
-          <a className="toolbarLinkUI" onClick={() => console.log("exit")}>
+          <a className="toolbarLinkUI" onClick={signOut}>
             Log Out
           </a>
         </li>
         <li>
           {" "}
           <span style={{ color: "green" }}>
-            Количество задач: <span>{countTasks}</span>
+            Привет: <span>{nickname}</span>
           </span>{" "}
         </li>
       </ul>
     </div>
   );
-}
+};
+
+export default connect(
+  null,
+  { signOut }
+)(SignedLinks);

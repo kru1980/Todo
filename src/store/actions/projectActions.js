@@ -1,8 +1,17 @@
-import { CREATE_TODO_SUCCESS, CREATE_TODO_FAIL } from "./typeActions";
+import {
+  CREATE_TODO_SUCCESS,
+  CREATE_TODO_FAIL,
+  DELETE_TODO_FAIL,
+  DELETE_TODO_SUCCESS
+} from "./typeActions";
 
 export const createdTodo = todo => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const fireStore = getFirestore();
+    const state = getState();
+    const author = state.firebase.profile.nickname;
+    const authorId = state.firebase.auth.uid;
+
     fireStore
       .collection("todos")
       .add({
@@ -11,8 +20,8 @@ export const createdTodo = todo => {
         description: todo.titleTodo,
         timeCreatedTodo: Date.now(),
         dateTodoCompleted: todo.datePicker,
-        author: "Rodik",
-        authorId: 123456789,
+        author,
+        authorId,
         completed: false
       })
       .then(() => {
@@ -23,3 +32,26 @@ export const createdTodo = todo => {
       });
   };
 };
+
+export const deleteTodoAcation = id => {
+  return (dispatch, getState, { getFirestore, getFirebase }) => {
+    const fireStore = getFirestore();
+    fireStore
+      .collection("todos")
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: DELETE_TODO_SUCCESS, payload: id });
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_TODO_FAIL, payload: error });
+      });
+  };
+};
+
+// export const filterUserAction =()=>{
+//   return (dispatch, getState, {getFirestore, getFirebase}) =>{
+//     const fireStore = getFirestore();
+
+//   }
+// }

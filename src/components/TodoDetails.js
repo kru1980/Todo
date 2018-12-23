@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 
 import { Card, Spin, Icon, Row, Col } from "antd";
 
-const TodoDetails = ({ todo }) => {
+const TodoDetails = ({ todo, auth }) => {
   if (todo) {
     const { title, author, dateTodoCompleted, description } = todo;
     return (
@@ -42,7 +42,8 @@ const mapStateToProps = (state, ownProps) => {
   const todo = todos ? todos[id] : null;
 
   return {
-    todo: todo
+    todo: todo,
+    auth: state.firebase.auth
   };
 };
 

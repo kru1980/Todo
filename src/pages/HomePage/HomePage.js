@@ -1,33 +1,30 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import ProjectLists from "../../components/ProjectLists";
+import SiderComponent from "../../components/SiderComponent";
+import { Layout } from "antd";
 
 class HomePage extends Component {
   render() {
     const { Sider, Content } = Layout;
-    const { todos } = this.props;
+    const { todos, data, auth } = this.props;
     return (
       <div>
         <Layout>
-          <Content>
-            <ProjectLists todos={todos} />
-          </Content>
-
           <Sider
             theme="light"
-            width="400"
-            style={{
-              padding: 24,
-
-              background: "green",
-              height: "80vh"
-            }}
+            width="260"
+            breakpoint="md"
+            collapsedWidth="0"
+            style={{ color: "white", zIndex: 9999, padding: "20px 0" }}
           >
-            <h4>hello sidebar</h4>
+            <SiderComponent todos={todos} />
           </Sider>
+          <Content style={{ background: "lightgrey" }}>
+            <ProjectLists todos={todos} auth={auth} data={data} />
+          </Content>
         </Layout>
       </div>
     );
@@ -36,10 +33,11 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.firestore.ordered.todos
+    todos: state.firestore.ordered.todos,
+    auth: state.firebase.auth
   };
 };
 export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "todos" }])
-)(HomePage);
+  firestoreConnect([{ collection: "todos" }]),
+  connect(mapStateToProps)
+)(Home);

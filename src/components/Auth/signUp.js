@@ -1,18 +1,19 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Form,
   Input,
   Tooltip,
   Icon,
-  Select,
+  // Select,
   Checkbox,
-  Button,
-  AutoComplete
+  Button
+  // AutoComplete
 } from "antd";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
+// const Option = Select.Option;
+// const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends Component {
   state = {
@@ -25,6 +26,8 @@ class RegistrationForm extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Получи значения из RegistrationForm: ", values);
+        this.props.signUpAction({ ...values });
+        this.props.form.resetFields();
       }
     });
   };
@@ -165,7 +168,8 @@ class RegistrationForm extends Component {
             valuePropName: "checked"
           })(
             <Checkbox onChange={this.onChange}>
-              Я прочитал и <a href="">согласен</a>
+              Я прочитал и{" "}
+              <Link to="/aboutPage">согласен c политикой сайта</Link>
             </Checkbox>
           )}
         </FormItem>
@@ -175,6 +179,7 @@ class RegistrationForm extends Component {
             type="primary"
             htmlType="submit"
             disabled={this.state.disabledButton}
+            block
           >
             Регистрация
           </Button>

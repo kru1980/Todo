@@ -1,36 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Row, Col } from "antd";
+import PandaIcon from "../NavBar/Logo";
 
 import ToolbarLinkUI from "./ToolbarLinkUI";
 import SignedLinks from "./SignedLinks";
 import SignedOutLinks from "./SignedOutLinks";
+import { connect } from "react-redux";
 
-class Toolbar extends Component {
-  render() {
-    // const { user, countTasks } = this.props;
-    let user = true;
-    let countTasks = 33;
+const Toolbar = props => {
+  const { auth, profile } = props;
 
-    const links = user ? (
-      <SignedLinks user={user} countTasks={countTasks} />
-    ) : (
-      <SignedOutLinks />
-    );
+  let countTasks = 33;
 
-    return (
-      <div>
-        <Row type="flex" align="middle">
-          <Col offset={1} span={9}>
-            <ToolbarLinkUI exact to="/">
-              Logo
-            </ToolbarLinkUI>
-          </Col>
-          <Col span={14}>{links}</Col>
-        </Row>
-      </div>
-    );
-  }
-}
+  const links = auth.uid ? (
+    <SignedLinks profile={profile} countTasks={countTasks} />
+  ) : (
+    <SignedOutLinks />
+  );
 
-export default Toolbar;
+  return (
+    <div>
+      <Row type="flex">
+        <Col xs={{ span: 1, offset: 0 }} md={{ span: 3, offset: 2 }}>
+          <ToolbarLinkUI exact to="/">
+            <PandaIcon />
+          </ToolbarLinkUI>
+        </Col>
+        <Col xs={{ span: 22, offset: 1 }} md={{ span: 17, offset: 2 }}>
+          {links}
+        </Col>
+      </Row>
+    </div>
+  );
+};
+const mapSateToProps = state => {
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
+  };
+};
+export default connect(mapSateToProps)(Toolbar);

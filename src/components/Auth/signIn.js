@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-
+import "./SignIn.css";
+import { Link } from "react-router-dom";
 import { Form, Icon, Input, Button } from "antd";
 
 const FormItem = Form.Item;
 
-class Login extends Component {
+class SignInForm extends Component {
+  forgotPassword = e => {
+    e.preventDefault();
+    console.log("Iam fogot my password");
+  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Сохраненные значения из формы Login: ", values);
-        //TODO: После авторизации пользователя сделать редирект
-        this.login(values);
+        this.props.signInAction(values);
       }
     });
   };
@@ -54,9 +57,20 @@ class Login extends Component {
               type="primary"
               htmlType="submit"
               className="login-form-button"
+              block
             >
               Вход
             </Button>
+          </FormItem>
+          <FormItem>
+            <a
+              onClick={this.forgotPassword}
+              className="login-form-forgot"
+              href="/"
+            >
+              Забыли пароль?
+            </a>
+            / <Link to="/signUpPage">Зарегистрироваться!</Link>
           </FormItem>
         </Form>
       </div>
@@ -64,6 +78,5 @@ class Login extends Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create()(Login);
-
-export default WrappedNormalLoginForm;
+const SignIn = Form.create()(SignInForm);
+export default SignIn;

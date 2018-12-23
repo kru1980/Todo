@@ -1,8 +1,8 @@
 import React from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { Form, DatePicker, Button, Input, Icon } from "antd";
-import locale from "antd/lib/date-picker/locale/ru_RU";
+// import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
 
@@ -94,9 +94,7 @@ class createdForm extends React.Component {
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
-          {getFieldDecorator("datePicker", config)(
-            <DatePicker locale={locale} />
-          )}
+          {getFieldDecorator("datePicker", config)(<DatePicker />)}
         </FormItem>
 
         <FormItem
