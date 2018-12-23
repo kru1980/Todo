@@ -44,6 +44,11 @@ const mapStateToProps = state => {
   };
 };
 export default compose(
-  firestoreConnect([{ collection: "todos" }]),
+  firestoreConnect([
+    {
+      collection: "todos",
+      orderBy: ["timeCreatedTodo", "desc"]
+    }
+  ]),
   connect(mapStateToProps)
 )(Home);

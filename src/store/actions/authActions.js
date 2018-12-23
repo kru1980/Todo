@@ -58,7 +58,8 @@ export const signUpAction = ({ email, password, nickname }, rest) => {
           .set({
             email,
             password,
-            nickname,
+            displayName: nickname,
+            photoURL: null,
             role: "user"
           });
       })

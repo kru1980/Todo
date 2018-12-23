@@ -9,7 +9,7 @@ export const createdTodo = todo => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const fireStore = getFirestore();
     const state = getState();
-    const author = state.firebase.profile.nickname;
+    const displayName = state.firebase.profile.displayName;
     const authorId = state.firebase.auth.uid;
 
     fireStore
@@ -20,7 +20,7 @@ export const createdTodo = todo => {
         description: todo.titleTodo,
         timeCreatedTodo: Date.now(),
         dateTodoCompleted: todo.datePicker,
-        author,
+        displayName,
         authorId,
         completed: false
       })

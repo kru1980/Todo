@@ -5,7 +5,7 @@ import { signOut } from "../../store/actions/authActions";
 import "./Toolbar.css";
 
 const SignedLinks = ({ signOut, countTasks, profile }) => {
-  const { nickname } = profile;
+  const { nickname, displayName } = profile;
   return (
     <div>
       <ul className="toolbarList">
@@ -23,7 +23,7 @@ const SignedLinks = ({ signOut, countTasks, profile }) => {
         <li>
           {" "}
           <span style={{ color: "green" }}>
-            Привет: <span>{nickname}</span>
+            Привет: <span>{nickname || displayName}</span>
           </span>{" "}
         </li>
       </ul>

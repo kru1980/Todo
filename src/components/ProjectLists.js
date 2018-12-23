@@ -7,8 +7,8 @@ import { Card, List, Spin, Icon, Row, Col, Button } from "antd";
 
 const ProjectLists = props => {
   const { todos, deleteTodoAcation, auth } = props;
-  console.log("auth", auth);
-  console.log("todos", todos);
+  // console.log("auth", auth);
+  console.log("todos ProjectLists", todos);
 
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
@@ -47,7 +47,8 @@ const ProjectLists = props => {
                     hoverable={true}
                   >
                     <p>{item.title}</p>
-                    <p>Автор: {item.author}</p>
+                    <p>Автор: {item.displayName}</p>
+                    <p>Время создания: {item.timeCreatedTodo}</p>
                     <div
                       style={{
                         display: "flex",
