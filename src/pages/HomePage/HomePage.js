@@ -29,7 +29,7 @@ class Home extends Component {
                 пользователей
               </h3>
             </div>
-            <ProjectLists todos={todos} auth={auth} data={data} />
+            <ProjectLists todos={todos} auth={auth} />
           </Content>
         </Layout>
       </div>
@@ -37,12 +37,12 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    todos: state.firestore.ordered.todos,
-    auth: state.firebase.auth
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     todos: state.firestore.ordered.todos,
+//     auth: state.firebase.auth
+//   };
+// };
 export default compose(
   firestoreConnect([
     {
@@ -50,5 +50,10 @@ export default compose(
       orderBy: ["timeCreatedTodo", "desc"]
     }
   ]),
-  connect(mapStateToProps)
+  connect(state => {
+    return {
+      todos: state.firestore.ordered.todos,
+      auth: state.firebase.auth
+    };
+  })
 )(Home);

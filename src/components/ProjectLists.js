@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import { deleteTodoAcation } from "../store/actions/projectActions";
-import { Card, List, Spin, Icon, Row, Col, Button } from "antd";
+import { Card, List, Spin, Icon, Row, Col, Button, Table } from "antd";
 
 const ProjectLists = props => {
   const { todos, deleteTodoAcation, auth } = props;
@@ -12,8 +12,15 @@ const ProjectLists = props => {
 
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
+  function onChange(pagination, filters, sorter) {
+    console.log("params", pagination, filters, sorter);
+  }
+
   return (
     <div>
+      {todos && (
+        <Table columns={columns} dataSource={data} onChange={onChange} />
+      )}
       {!todos ? (
         <div>
           <Row type="flex" justify="center" align="middle">
