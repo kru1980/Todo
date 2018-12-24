@@ -3,15 +3,14 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
-import { Row, Col, Layout } from "antd";
+import { Layout } from "antd";
 import UserTodos from "../components/UserTodos/UserTodos";
 
 const ProfilePage = ({ auth, todos, authUid }) => {
   console.log("from ProfilePage", authUid);
-  // console.log("from ProfilePage", authUidProps);
 
   if (!auth.uid) return <Redirect to="/signInPage" />;
-  const { Header, Footer, Sider, Content } = Layout;
+  const { Sider, Content } = Layout;
   return (
     <Layout>
       <Sider>Sider</Sider>

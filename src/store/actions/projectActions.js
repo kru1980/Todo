@@ -25,6 +25,7 @@ export const createdTodo = todo => {
         completed: false
       })
       .then(() => {
+        // console.log("from action created todo", state);
         dispatch({ type: CREATE_TODO_SUCCESS });
       })
       .catch(error => {
