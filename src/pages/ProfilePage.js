@@ -5,7 +5,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import UserTodos from "../components/UserTodos/UserTodos";
-import RescponsComponent from "../components/Responsiv/RescponsComponent";
 
 const ProfilePage = ({ auth, todos, authUid }) => {
   console.log("from ProfilePage", authUid);
@@ -17,7 +16,6 @@ const ProfilePage = ({ auth, todos, authUid }) => {
       <Sider>Sider</Sider>
       <Content>
         <UserTodos todos={todos} auth={auth} />
-        <RescponsComponent />
       </Content>
     </Layout>
   );
