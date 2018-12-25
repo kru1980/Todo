@@ -39,7 +39,7 @@ const TableHOC = ({ todos }) => {
         columns={columns}
         dataSource={todos}
         onChange={onChange}
-        rowKey={todo => todo.id}
+        rowKey={todo => todo.id} //!Че за ебаный ключ
       />
     </div>
   );
