@@ -4,15 +4,6 @@ import { Table } from "antd";
 import * as R from "ramda";
 
 const TableHOC = ({ todos }) => {
-  // Подсмотрел у монтра в видео про линзы. Перебираем массив объектов получаемых с fb базы, далее читаем дату из строки timeCreatedTodo, перезаписываем их данными даты обернутой в функцию moment
-  const newData = data => {
-    const formatData = timeCreatedTodo => {
-      return moment(new Date(timeCreatedTodo)).calendar();
-    };
-    const timeLens = R.lensProp("timeCreatedTodo");
-    return R.map(item => R.over(timeLens, formatData, item))(data);
-  };
-
   const columns = [
     {
       title: "Название задачи",
@@ -22,19 +13,32 @@ const TableHOC = ({ todos }) => {
     {
       title: "Автор",
       dataIndex: "displayName",
+      width: 120,
       sorter: (a, b) => a.displayName.length - b.displayName.length
     },
     {
       title: "Дата выполнения задачи",
       dataIndex: "datePicker",
-      defaultSortOrder: "descend",
       sorter: (a, b) => a.datePicker - b.datePicker
     },
     {
       title: "Дата создания задачи",
       dataIndex: "timeCreatedTodo",
       defaultSortOrder: "descend",
+      render: text => moment(text).calendar(),
       sorter: (a, b) => a.timeCreatedTodo - b.timeCreatedTodo
+    },
+    {
+      title: "Просрочено время",
+      key: "lastTime",
+
+      render: record => {
+        if (moment(Date.now()).format("LL") > record.dateTodoCompleted) {
+          return "Время просроченно";
+        } else {
+          return "Время не просрочено";
+        }
+      }
     }
   ];
 
@@ -45,10 +49,11 @@ const TableHOC = ({ todos }) => {
   return (
     <div>
       <Table
+        bordered
         columns={columns}
-        dataSource={newData(todos)}
+        dataSource={todos}
         onChange={onChange}
-        rowKey={todo => todo.id} //!Че за ебаный ключ
+        rowKey={todo => todo.id}
       />
     </div>
   );

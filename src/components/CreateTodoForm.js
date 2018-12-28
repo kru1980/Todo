@@ -4,7 +4,7 @@ import moment from "moment";
 import "moment/locale/ru";
 
 import { Form, DatePicker, Button, Input, Icon } from "antd";
-import locale from "antd/lib/date-picker/locale/ru_RU";
+// import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
 
@@ -32,6 +32,7 @@ class createdForm extends React.Component {
         ...fieldsValue,
 
         datePicker: moment(fieldsValue["datePicker"]) // данные идущие из датапикера, обрабатывает moment.js и записывает в базу обработанную дату
+          // правильнее дату обрабатывать при выводе, а может нет!!!
           .locale("ru")
           .format("LL")
       };
@@ -100,9 +101,7 @@ class createdForm extends React.Component {
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
-          {getFieldDecorator("datePicker", config)(
-            <DatePicker locale={locale} />
-          )}
+          {getFieldDecorator("datePicker", config)(<DatePicker />)}
         </FormItem>
 
         <FormItem
