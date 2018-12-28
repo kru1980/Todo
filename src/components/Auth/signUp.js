@@ -1,19 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  // Select,
-  Checkbox,
-  Button
-  // AutoComplete
-} from "antd";
+import { Form, Input, Tooltip, Icon, Checkbox, Button } from "antd";
 
 const FormItem = Form.Item;
-// const Option = Select.Option;
-// const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends Component {
   state = {
@@ -152,7 +141,7 @@ class RegistrationForm extends Component {
             </span>
           }
         >
-          {getFieldDecorator("nickname", {
+          {getFieldDecorator("displayName", {
             rules: [
               {
                 required: true,

@@ -1,8 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import moment from "moment";
+import "moment/locale/ru";
 
 import { Form, DatePicker, Button, Input, Icon } from "antd";
-// import locale from "antd/lib/date-picker/locale/ru_RU";
+import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
 
@@ -28,7 +30,10 @@ class createdForm extends React.Component {
 
       const values = {
         ...fieldsValue,
-        datePicker: fieldsValue["datePicker"].format("YYYY-MM-DD")
+
+        datePicker: moment(fieldsValue["datePicker"]) // данные идущие из датапикера, обрабатывает moment.js и записывает в базу обработанную дату
+          .locale("ru")
+          .format("LL")
       };
       // console.log("Received values of form: ", values);
       this.props.createdTodo(values);
@@ -73,10 +78,11 @@ class createdForm extends React.Component {
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
-          {getFieldDecorator("titleTodo", {
+          {getFieldDecorator("title", {
             rules: [{ required: true, message: "Пожалуйста введите задачу!" }]
           })(
             <Input
+              autoFocus
               prefix={
                 <Icon
                   type="edit"
@@ -94,7 +100,9 @@ class createdForm extends React.Component {
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
-          {getFieldDecorator("datePicker", config)(<DatePicker />)}
+          {getFieldDecorator("datePicker", config)(
+            <DatePicker locale={locale} />
+          )}
         </FormItem>
 
         <FormItem

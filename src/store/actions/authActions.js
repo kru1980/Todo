@@ -43,7 +43,7 @@ export const signOut = () => {
 //   };
 // };
 
-export const signUpAction = ({ email, password, nickname }, rest) => {
+export const signUpAction = ({ email, password, displayName }, rest) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
@@ -58,7 +58,7 @@ export const signUpAction = ({ email, password, nickname }, rest) => {
           .set({
             email,
             password,
-            displayName: nickname,
+            displayName,
             photoURL: null,
             role: "user"
           });
