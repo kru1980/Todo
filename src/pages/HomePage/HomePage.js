@@ -14,12 +14,7 @@ class Home extends Component {
       <div>
         <Layout>
           <Content style={{ background: "lightgrey" }}>
-            <div>
-              <h3>
-                Главная страница, на которой представленны задачи всех
-                пользователей, без возможности редактирования
-              </h3>
-            </div>
+            <div />
             <ProjectLists todos={todos} auth={auth} />
           </Content>
         </Layout>

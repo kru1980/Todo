@@ -4,6 +4,14 @@ import { Table } from "antd";
 import * as R from "ramda";
 
 const TableHOC = ({ todos }) => {
+  const headerTable = (
+    <div>
+      <h3 style={{ textAlign: "center" }}>
+        Главная страница, на которой представленны задачи всех пользователей,
+        без возможности редактирования
+      </h3>
+    </div>
+  );
   const columns = [
     {
       title: "Название задачи",
@@ -53,6 +61,7 @@ const TableHOC = ({ todos }) => {
         columns={columns}
         dataSource={todos}
         onChange={onChange}
+        title={() => headerTable}
         rowKey={todo => todo.id}
       />
     </div>
