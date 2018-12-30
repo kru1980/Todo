@@ -35,7 +35,7 @@ class createdForm extends React.Component {
           .locale("ru")
           .format("LL")
       };
-      console.log("Received values of form: ", values);
+      // console.log("Received values of form: ", values);
       this.props.createdTodo(values);
       this.props.form.resetFields();
       this.props.form.validateFields();

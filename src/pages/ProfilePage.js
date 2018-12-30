@@ -6,8 +6,8 @@ import { Redirect } from "react-router-dom";
 import { Layout } from "antd";
 import UserTodos from "../components/UserTodos/UserTodos";
 
-const ProfilePage = ({ auth, todos, authUid }) => {
-  console.log("from ProfilePage", authUid);
+const ProfilePage = ({ auth, todos }) => {
+  console.log("from ProfilePage auth.uid", auth.uid);
 
   if (!auth.uid) return <Redirect to="/signInPage" />;
   const { Sider, Content } = Layout;

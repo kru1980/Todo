@@ -2,8 +2,8 @@ import React from "react";
 import { Table } from "antd";
 
 const UserTodos = ({ todos, auth }) => {
-  console.log("userPage", todos);
-  console.log("userPage", auth);
+  // console.log("userPage", todos);
+  // console.log("userPage", auth);
 
   const columns = [
     {

@@ -5,8 +5,6 @@ import {
   DELETE_TODO_SUCCESS
 } from "./typeActions";
 
-import * as R from "ramda";
-
 export const createdTodo = todo => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
     const fireStore = getFirestore();
@@ -17,7 +15,6 @@ export const createdTodo = todo => {
     fireStore
       .collection("todos")
       .add({
-        // ...todo,
         title: todo.title,
         description: todo.title,
         datePicker: todo.datePicker,
@@ -28,7 +25,6 @@ export const createdTodo = todo => {
         completed: false
       })
       .then(() => {
-        // console.log("from action created todo", state);
         dispatch({ type: CREATE_TODO_SUCCESS });
       })
       .catch(error => {
