@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+
 import moment from "moment";
 import "moment/locale/ru";
 
@@ -31,12 +32,9 @@ class createdForm extends React.Component {
       const values = {
         ...fieldsValue,
 
-        datePicker: moment(fieldsValue["datePicker"]) // данные идущие из датапикера, обрабатывает moment.js и записывает в базу обработанную дату
-          // правильнее дату обрабатывать при выводе, а может нет!!!
-          .locale("ru")
-          .format("LL")
+        datePicker: moment(fieldsValue["datePicker"]).format("LL")
       };
-      // console.log("Received values of form: ", values);
+      console.log("Received values of form: ", values);
       this.props.createdTodo(values);
       this.props.form.resetFields();
       this.props.form.validateFields();
@@ -101,7 +99,9 @@ class createdForm extends React.Component {
           validateStatus={todoError ? "error" : ""}
           help={todoError || ""}
         >
-          {getFieldDecorator("datePicker", config)(<DatePicker />)}
+          {getFieldDecorator("datePicker", config)(
+            <DatePicker format={"DD/MM/YYYY"} />
+          )}
         </FormItem>
 
         <FormItem

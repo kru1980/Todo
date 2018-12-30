@@ -18,9 +18,7 @@ export const createdTodo = todo => {
       .collection("todos")
       .add({
         // ...todo,
-        title: `${
-          todo.title.length > 60 ? `${R.take(60)(todo.title)}...` : todo.title
-        }`,
+        title: todo.title,
         description: todo.title,
         datePicker: todo.datePicker,
         timeCreatedTodo: Date.now(),
