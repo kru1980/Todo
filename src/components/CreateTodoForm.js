@@ -5,7 +5,6 @@ import moment from "moment";
 import "moment/locale/ru";
 
 import { Form, DatePicker, Button, Input, Icon } from "antd";
-// import locale from "antd/lib/date-picker/locale/ru_RU";
 
 const FormItem = Form.Item;
 
@@ -32,7 +31,9 @@ class createdForm extends React.Component {
       const values = {
         ...fieldsValue,
 
-        datePicker: moment(fieldsValue["datePicker"]).format("LL")
+        datePicker: moment(fieldsValue["datePicker"])
+          .locale("ru")
+          .format("LL")
       };
       console.log("Received values of form: ", values);
       this.props.createdTodo(values);

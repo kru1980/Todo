@@ -8,6 +8,7 @@ const TableHOC = ({ todos }) => {
     {
       title: "Название задачи",
       dataIndex: "title",
+      render: text => `${text.length > 60 ? `${R.take(60)(text)}...` : text}`,
       sorter: (a, b) => a.title.length - b.title.length
     },
     {
@@ -31,7 +32,6 @@ const TableHOC = ({ todos }) => {
     {
       title: "Просрочено время",
       key: "lastTime",
-
       render: record => {
         if (moment(Date.now()).format("LL") > record.dateTodoCompleted) {
           return "Время просроченно";
