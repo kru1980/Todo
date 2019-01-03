@@ -7,6 +7,8 @@ import { withRouter } from "react-router-dom";
 import { Card, Spin, Icon, Row, Col } from "antd";
 
 const TodoDetails = ({ todo, auth }) => {
+  // console.log(todo);
+
   if (todo) {
     const { title, author, dateTodoCompleted, description } = todo;
     return (

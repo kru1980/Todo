@@ -50,16 +50,16 @@ const TableHOC = ({ todos }) => {
     }
   ];
 
-  function onChange(pagination, filters, sorter) {
-    console.log("params", pagination, filters, sorter);
-  }
+  // function onChange(pagination, filters, sorter) {
+  //   console.log("params", pagination, filters, sorter);
+  // }
 
   return (
     <div>
       <Table
         columns={columns}
         dataSource={todos}
-        onChange={onChange}
+        // onChange={onChange}
         title={() => headerTable}
         rowKey={todo => todo.id}
       />

@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Table, Input, Button, Icon, Divider } from "antd";
+import moment from "moment";
 import Highlighter from "react-highlight-words";
 
 import { deleteTodoAcation } from "../../store/actions/projectActions";
@@ -111,13 +113,14 @@ class UserTodos extends React.Component {
         title: "Название задачи",
         dataIndex: "title",
         key: "title",
-        render: text => `${text.length > 40 ? `${R.take(40)(text)}...` : text}`
+        // render: text => `${text.length > 40 ? `${R.take(40)(text)}...` : text}`
+        render: (text, record) => <Link to={`/todo/${record.id}`}>{text}</Link>
       },
       {
         title: "Описание задачи",
         dataIndex: "description",
         key: "description",
-        width: "40%",
+        width: "30%",
         ...this.getColumnSearchProps("description")
       },
       {
@@ -127,10 +130,17 @@ class UserTodos extends React.Component {
         sorter: (a, b) => a.datePicker - b.datePicker
       },
       {
+        title: "Дата создания задачи",
+        dataIndex: "timeCreatedTodo",
+        defaultSortOrder: "descend",
+        render: text => moment(text).calendar(),
+        sorter: (a, b) => a.timeCreatedTodo - b.timeCreatedTodo
+      },
+      {
         title: "Статус",
         dataIndex: "completed",
         key: "completed",
-        width: "14%",
+        width: "10%",
         sorter: (a, b) => a.completed - b.completed,
         render: (text, record) =>
           record.completed ? "выполнена" : "не выполнена"
@@ -176,6 +186,9 @@ class UserTodos extends React.Component {
           onChange={this.handleChange}
           bordered
           rowKey={todo => todo.id}
+          expandedRowRender={record => (
+            <p style={{ margin: 0 }}>{record.description}</p>
+          )}
         />
       </div>
     );

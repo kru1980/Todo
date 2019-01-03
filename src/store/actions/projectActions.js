@@ -4,6 +4,7 @@ import {
   DELETE_TODO_FAIL,
   DELETE_TODO_SUCCESS
 } from "./typeActions";
+import * as R from "ramda";
 
 export const createdTodo = todo => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
@@ -15,7 +16,9 @@ export const createdTodo = todo => {
     fireStore
       .collection("todos")
       .add({
-        title: todo.title,
+        title: `${
+          todo.title.length > 40 ? `${R.take(40)(todo.title)}...` : todo.title
+        }`,
         description: todo.title,
         datePicker: todo.datePicker,
         timeCreatedTodo: Date.now(),
