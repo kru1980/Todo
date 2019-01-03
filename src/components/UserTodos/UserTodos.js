@@ -1,6 +1,9 @@
 import React from "react";
-import { Table, Input, Button, Icon } from "antd";
+import { connect } from "react-redux";
+import { Table, Input, Button, Icon, Divider } from "antd";
 import Highlighter from "react-highlight-words";
+
+import { deleteTodoAcation } from "../../store/actions/projectActions";
 import * as R from "ramda";
 import "./UserTodos.css";
 
@@ -127,9 +130,30 @@ class UserTodos extends React.Component {
         title: "Статус",
         dataIndex: "completed",
         key: "completed",
+        width: "14%",
         sorter: (a, b) => a.completed - b.completed,
         render: (text, record) =>
           record.completed ? "выполнена" : "не выполнена"
+      },
+      {
+        title: "Действия",
+        key: "action",
+        width: "16%",
+        render: (text, record) => (
+          <span>
+            <Button size="small" onClick={e => console.log(e.target)}>
+              Done
+            </Button>
+            <Divider type="vertical" />
+            <Button
+              size="small"
+              type="danger"
+              onClick={id => this.props.deleteTodoAcation(record.id)}
+            >
+              Delete
+            </Button>
+          </span>
+        )
       }
     ];
 
@@ -158,4 +182,7 @@ class UserTodos extends React.Component {
   }
 }
 
-export default UserTodos;
+export default connect(
+  null,
+  { deleteTodoAcation }
+)(UserTodos);
