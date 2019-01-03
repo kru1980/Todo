@@ -4,8 +4,11 @@ import Highlighter from "react-highlight-words";
 import * as R from "ramda";
 import "./UserTodos.css";
 
+const Highlight = ({ children, highlightIndex }) => (
+  <strong className="highlighted-text">{children}</strong>
+);
+
 class UserTodos extends React.Component {
-  // console.log("userPage", todos);
   state = {
     filteredInfo: null,
     sortedInfo: null,
@@ -68,8 +71,9 @@ class UserTodos extends React.Component {
       <Highlighter
         highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
         searchWords={[this.state.searchText]}
-        autoEscape
+        autoEscape={true}
         textToHighlight={text.toString()}
+        highlightTag={Highlight}
       />
     )
   });
@@ -84,42 +88,17 @@ class UserTodos extends React.Component {
     this.setState({ searchText: "" });
   };
 
-  // ========== text filter end ==
-
-  // handleChange = (pagination, filters, sorter) => {
-  //   console.log("Various parameters", pagination, filters, sorter);
-  //   this.setState({
-  //     filteredInfo: filters,
-  //     sortedInfo: sorter
-  //   });
-  // };
-
-  // clearFilters = () => {
-  //   this.setState({ filteredInfo: null, searchText: "" });
-  // };
-
-  // clearAll = () => {
-  //   this.setState({
-  //     filteredInfo: null,
-  //     sortedInfo: null,
-  //     searchText: ""
-  //   });
-  // };
-
-  setDatePickerSort = () => {
-    console.log("Нажал все-таки");
-
+  clearAll = () => {
     this.setState({
-      sortedInfo: {
-        order: "descend",
-        columnKey: "datePicker"
-      }
+      filteredInfo: null,
+      sortedInfo: null,
+      searchText: ""
     });
   };
 
-  render() {
-    // console.log("props UserTodos", this.props);
+  // ========== text filter end ==
 
+  render() {
     let { sortedInfo, filteredInfo } = this.state;
     sortedInfo = sortedInfo || {};
     filteredInfo = filteredInfo || {};
@@ -129,46 +108,42 @@ class UserTodos extends React.Component {
         title: "Название задачи",
         dataIndex: "title",
         key: "title",
-        render: text => `${text.length > 60 ? `${R.take(60)(text)}...` : text}`,
-        sorter: (a, b) => a.title.length - b.title.length
-        // width: "30%"
-        // ...this.getColumnSearchProps("title")
+        render: text => `${text.length > 40 ? `${R.take(40)(text)}...` : text}`
+      },
+      {
+        title: "Описание задачи",
+        dataIndex: "description",
+        key: "description",
+        width: "40%",
+        ...this.getColumnSearchProps("description")
       },
       {
         title: "Дата выполнения задачи",
         dataIndex: "datePicker",
         key: "datePicker",
         sorter: (a, b) => a.datePicker - b.datePicker
-        // sortOrder: sortedInfo.columnKey === "datePicker" && sortedInfo.order
       },
       {
         title: "Статус",
         dataIndex: "completed",
         key: "completed",
-        sorter: (a, b) => a.datePicker - b.datePicker,
-        //   filters: [
-        //     { text: "Выполнена", value: "выполнена" },
-        //     { text: "Не выполнена", value: "не выполнена" }
-        //   ],
-        //   filteredValue: filteredInfo.completed || null,
-        //   // onFilter: (value, record) => record.completed.includes(value),
-        //   sorter: (a, b) => a.completed.length - b.completed.length,
-        //   sortOrder: sortedInfo.columnKey === "completed" && sortedInfo.order,
+        sorter: (a, b) => a.completed - b.completed,
         render: (text, record) =>
           record.completed ? "выполнена" : "не выполнена"
       }
     ];
+
+    const { todos, auth } = this.props;
+
     return (
       <div>
-        <div className="table-operations">
-          <Button onClick={this.setDatePickerSort}>Sort Date</Button>
-          {/* <Button onClick={this.clearFilters}>Clear filters</Button>
-          <Button onClick={this.clearAll}>Clear filters and sorters</Button> */}
-        </div>
+        <div className="table-operations" />
         <Table
           title={() => "headerTable"}
           columns={columns}
-          dataSource={this.props.todos}
+          dataSource={
+            todos && R.filter(todo => todo.authorId === auth.uid)(todos)
+          }
           onChange={this.handleChange}
           bordered
           rowKey={todo => todo.id}
