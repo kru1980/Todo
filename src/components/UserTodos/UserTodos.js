@@ -99,9 +99,9 @@ class UserTodos extends React.Component {
   // ========== text filter end ==
 
   render() {
-    let { sortedInfo, filteredInfo } = this.state;
-    sortedInfo = sortedInfo || {};
-    filteredInfo = filteredInfo || {};
+    // let { sortedInfo, filteredInfo } = this.state;
+    // sortedInfo = sortedInfo || {};
+    // filteredInfo = filteredInfo || {};
 
     const columns = [
       {
@@ -133,17 +133,22 @@ class UserTodos extends React.Component {
       }
     ];
 
-    const { todos, auth } = this.props;
+    const {
+      todos,
+      auth: { uid }
+    } = this.props;
+
+    // console.log(this.props.todos);
 
     return (
       <div>
         <div className="table-operations" />
         <Table
-          title={() => "headerTable"}
-          columns={columns}
-          dataSource={
-            todos && R.filter(todo => todo.authorId === auth.uid)(todos)
+          title={() =>
+            `Таблица задач пользователя, которые можно редактировать `
           }
+          columns={columns}
+          dataSource={todos && R.filter(todo => todo.authorId === uid)(todos)}
           onChange={this.handleChange}
           bordered
           rowKey={todo => todo.id}

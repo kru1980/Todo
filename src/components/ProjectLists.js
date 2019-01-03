@@ -7,8 +7,8 @@ import TableHOC from "./TableHOC";
 import { deleteTodoAcation } from "../store/actions/projectActions";
 import { Spin, Icon, Row, Col } from "antd";
 
-const ProjectLists = props => {
-  const { todos } = props;
+const ProjectLists = ({ todos, auth }) => {
+  // const { todos } = props;
   const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
   return (

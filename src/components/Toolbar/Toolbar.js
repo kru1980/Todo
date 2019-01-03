@@ -9,15 +9,20 @@ import SignedOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
 
 const Toolbar = props => {
-  const { auth, profile } = props;
+  const {
+    auth: { uid },
+    profile
+  } = props;
 
   let countTasks = 33;
-
-  const links = auth.uid ? (
-    <SignedLinks profile={profile} countTasks={countTasks} />
-  ) : (
-    <SignedOutLinks />
-  );
+  const emailVerified = true;
+  const links =
+    uid && emailVerified ? (
+      <SignedLinks profile={profile} countTasks={countTasks} />
+    ) : (
+      <SignedOutLinks />
+    );
+  // console.log("auth from Toolbar ", uid, emailVerified);
 
   return (
     <div>

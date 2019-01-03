@@ -7,7 +7,7 @@ import { Layout } from "antd";
 import UserTodos from "../components/UserTodos/UserTodos";
 
 const ProfilePage = ({ auth, todos }) => {
-  console.log("from ProfilePage auth.uid", auth.uid);
+  // console.log("from ProfilePage auth.uid", auth.uid);
 
   if (!auth.uid) return <Redirect to="/signInPage" />;
   const { Sider, Content } = Layout;
