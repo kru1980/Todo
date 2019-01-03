@@ -57,7 +57,6 @@ const TableHOC = ({ todos }) => {
   return (
     <div>
       <Table
-        bordered
         columns={columns}
         dataSource={todos}
         onChange={onChange}
