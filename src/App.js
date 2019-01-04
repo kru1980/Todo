@@ -33,8 +33,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodoPage} />
-              <Route path="/profilePage" component={ProfilePage} />
-              <Route path="/todo/:id" component={TodoDetailsPage} />
+              <Route exact path="/profilePage" component={ProfilePage} />
+              <Route path="/profilePage/:id?" component={TodoDetailsPage} />
               <Route path="/signInPage" component={SignInPage} />
               <Route path="/signUpPage" component={SignUpPage} />
               <Route component={NotFoundPage} />

@@ -2,21 +2,52 @@ import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-import { Card, Spin, Icon, Row, Col } from "antd";
+import { Card, Spin, Icon, Row, Col, Breadcrumb, Alert } from "antd";
+import "./TodoDetails.css";
 
-const TodoDetails = ({ todo, auth }) => {
-  // console.log(todo);
+// =========== Breadcrumb start ===========
 
+const breadcrumbNameMapGenerator = (location, todo) => {
+  return {
+    "/profilePage": "ProfilePage",
+    [location.pathname]: `Название задачи:  ${todo.title}`
+  };
+};
+// =========== Breadcrumb end ===========
+
+const TodoDetails = ({ todo, location }) => {
   if (todo) {
-    const { title, author, dateTodoCompleted, description } = todo;
+    // =========== Breadcrumb start ===========
+    const pathSnippets = location.pathname.split("/").filter(i => i);
+    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
+      const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
+      return (
+        <Breadcrumb.Item key={url}>
+          <Link to={url}>
+            {breadcrumbNameMapGenerator(location, todo)[url]}
+          </Link>
+        </Breadcrumb.Item>
+      );
+    });
+    const breadcrumbItems = [
+      <Breadcrumb.Item key="home">
+        <Link to="/">Home</Link>
+      </Breadcrumb.Item>
+    ].concat(extraBreadcrumbItems);
+    // =========== Breadcrumb end ===========
+    const { title, displayName, dateTodoCompleted, description } = todo;
+
     return (
-      <Card title={title} style={{ marginTop: 67 }}>
-        <p>{description}</p>
-        <p>дата выполнения: {dateTodoCompleted}</p>
-        <p>автор: {author}</p>
-      </Card>
+      <div>
+        <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+        <Card title={title} style={{ marginTop: 67 }}>
+          <p>{description}</p>
+          <p>дата выполнения: {dateTodoCompleted}</p>
+          <p>автор: {displayName}</p>
+        </Card>
+      </div>
     );
   } else {
     const antIcon = (

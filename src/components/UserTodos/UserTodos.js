@@ -114,7 +114,9 @@ class UserTodos extends React.Component {
         dataIndex: "title",
         key: "title",
         // render: text => `${text.length > 40 ? `${R.take(40)(text)}...` : text}`
-        render: (text, record) => <Link to={`/todo/${record.id}`}>{text}</Link>
+        render: (text, record) => (
+          <Link to={`/profilePage/${record.id}`}>{text}</Link>
+        )
       },
       {
         title: "Описание задачи",
