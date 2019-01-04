@@ -4,7 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Link, withRouter } from "react-router-dom";
 
-import { Card, Spin, Icon, Row, Col, Breadcrumb, Alert } from "antd";
+import { Card, Spin, Icon, Row, Col, Breadcrumb } from "antd";
 import "./TodoDetails.css";
 
 // =========== Breadcrumb start ===========
