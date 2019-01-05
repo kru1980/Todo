@@ -3,7 +3,8 @@ import {
   SIGNIN_USER_FAIL,
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
-  SIGNOUT_SUCCESS
+  SIGNOUT_SUCCESS,
+  CLEAR_ERROR_SERVER_MESSAGE_SUCCESS
 } from "./typeActions";
 
 export const signInAction = existingUser => {
@@ -74,5 +75,11 @@ export const signUpAction = ({ email, password, displayName }, rest) => {
       .catch(error => {
         dispatch({ type: CREATE_USER_FAIL, error });
       });
+  };
+};
+
+export const clearErrorServerMessageAction = () => {
+  return dispatch => {
+    dispatch({ type: CLEAR_ERROR_SERVER_MESSAGE_SUCCESS });
   };
 };

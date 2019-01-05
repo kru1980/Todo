@@ -3,20 +3,27 @@ import SignUp from "../components/Auth/SignUp";
 import { Row, Col, Alert } from "antd";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { signUpAction } from "../store/actions/authActions";
+import {
+  signUpAction,
+  clearErrorServerMessageAction
+} from "../store/actions/authActions";
 
-const SignUpPage = ({ signUpAction, authError, auth }) => {
-  const onClose = function(e) {};
+const SignUpPage = ({
+  signUpAction,
+  authError,
+  auth,
+  clearErrorServerMessageAction
+}) => {
   if (auth.uid) return <Redirect to="/" />;
   return (
     <div>
-      <Row type="flex" justify="center" align="middle">
+      <Row type="flex" justify="center">
         <Col xs={{ span: 16 }} md={{ span: 12 }} lg={{ span: 8 }}>
           <SignUp signUpAction={signUpAction} />
           {authError ? (
             <Alert
               closable
-              onClose={onClose}
+              onClose={clearErrorServerMessageAction}
               message={`ошибка сервера : ${authError}`}
               type="error"
             />
@@ -28,7 +35,7 @@ const SignUpPage = ({ signUpAction, authError, auth }) => {
 };
 
 const mapStateToProps = state => {
-  console.log("state from SignUpPage", state);
+  // console.log("state from SignUpPage", state);
 
   return {
     authError: state.auth.authError,
@@ -38,5 +45,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { signUpAction }
+  { signUpAction, clearErrorServerMessageAction }
 )(SignUpPage);

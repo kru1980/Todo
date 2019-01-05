@@ -1,21 +1,29 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { signInAction } from "../store/actions/authActions";
+import SignIn from "../components/Auth/SignIn";
+import {
+  signInAction,
+  clearErrorServerMessageAction
+} from "../store/actions/authActions";
+
 import { Row, Col, Alert } from "antd";
 
-import { Redirect } from "react-router-dom";
-
-import SignIn from "../components/Auth/SignIn";
-
-const SignInPage = ({ auth, authError, signInAction }) => {
+const SignInPage = ({
+  auth,
+  authError,
+  signInAction,
+  clearErrorServerMessageAction
+}) => {
   const onClose = function(e) {};
+
   if (auth.uid) return <Redirect to="/" />;
   return (
     <div>
       <Row type="flex" justify="center">
         <Col xs={{ span: 16 }} md={{ span: 12 }} lg={{ span: 6 }}>
           <SignIn
-            onClose={onClose}
+            // onClose={onClose}
             authError={authError}
             auth={auth}
             signInAction={signInAction}
@@ -23,7 +31,7 @@ const SignInPage = ({ auth, authError, signInAction }) => {
           {authError ? (
             <Alert
               closable
-              onClose={onClose}
+              onClose={clearErrorServerMessageAction}
               message={`ошибка сервера : ${authError}`}
               type="error"
             />
@@ -45,5 +53,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { signInAction }
+  { signInAction, clearErrorServerMessageAction }
 )(SignInPage);

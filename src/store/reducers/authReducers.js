@@ -3,7 +3,8 @@ import {
   CREATE_USER_FAIL,
   SIGNIN_USER_SUCCESS,
   SIGNIN_USER_FAIL,
-  SIGNOUT_SUCCESS
+  SIGNOUT_SUCCESS,
+  CLEAR_ERROR_SERVER_MESSAGE_SUCCESS
 } from "../actions/typeActions";
 
 const initial = {
@@ -37,6 +38,12 @@ const authReducers = (state = initial, action) => {
       return {
         ...state,
         authError: action.error.message
+      };
+    case CLEAR_ERROR_SERVER_MESSAGE_SUCCESS:
+      console.log("CLEAR_ERROR_SERVER_MESSAGE_SUCCESS");
+      return {
+        ...state,
+        authError: null
       };
 
     default:

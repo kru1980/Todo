@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import "./SignIn.css";
 import { Link } from "react-router-dom";
+
 import { Form, Icon, Input, Button } from "antd";
+
+import "./SignIn.css";
 
 const FormItem = Form.Item;
 
 class SignInForm extends Component {
   forgotPassword = e => {
     e.preventDefault();
-    console.log("Iam fogot my password");
+    console.log("Данная функция не работает");
   };
   handleSubmit = e => {
     e.preventDefault();
