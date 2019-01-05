@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Table, Input, Button, Icon, Divider } from "antd";
+import { Table, Input, Button, Icon, Divider, Tooltip } from "antd";
 import moment from "moment";
 import Highlighter from "react-highlight-words";
 
@@ -158,18 +158,27 @@ class UserTodos extends React.Component {
           <span>
             {" "}
             {record.completed ? (
-              <Button icon="check" />
+              <Tooltip title="Дальнейшие действия невозможны">
+                <Button icon="check" />
+              </Tooltip>
             ) : (
-              <Button
-                onClick={id => this.props.taskСompletedAction(record.id)}
-              />
+              <Tooltip title="Отметить задачу как выполнена">
+                <Button
+                  onClick={id => this.props.taskСompletedAction(record.id)}
+                />
+              </Tooltip>
             )}
-            <Divider type="vertical" />
-            <Button
-              onClick={id => this.props.deleteTodoAcation(record.id)}
-              type="danger"
-              icon="delete"
+            <Divider
+              type="vertical"
+              style={{ backgroundColor: "rgb(170, 163, 163)" }}
             />
+            <Tooltip title="Удалить задачу">
+              <Button
+                onClick={id => this.props.deleteTodoAcation(record.id)}
+                type="danger"
+                icon="delete"
+              />
+            </Tooltip>
           </span>
         )
       }
@@ -192,7 +201,6 @@ class UserTodos extends React.Component {
           columns={columns}
           dataSource={todos && R.filter(todo => todo.authorId === uid)(todos)}
           pagination={{ pageSize: 6 }}
-          // scroll={{ y: 480 }}
           size="small"
           bordered
           rowKey={todo => todo.id}

@@ -22,7 +22,6 @@ const Toolbar = props => {
     ) : (
       <SignedOutLinks />
     );
-  // console.log("auth from Toolbar ", uid, emailVerified);
 
   return (
     <div>
