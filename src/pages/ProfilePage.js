@@ -16,12 +16,15 @@ const ProfilePage = ({ auth, todos, profile }) => {
   const { Sider, Content } = Layout;
   return (
     <Layout>
-      <Sider theme="light" style={{ padding: 10, border: "1px, solid" }}>
-        <SiderProfile auth={auth} todos={todos} profile={profile} />
-      </Sider>
-      <Content>
+      <Content style={{ background: "#f0f2f5" }}>
         <UserTodos todos={todos} auth={auth} profile={profile} />
       </Content>
+      <Sider
+        theme="light"
+        style={{ padding: 10, border: "1px, solid", background: "#f0f2f5" }}
+      >
+        <SiderProfile auth={auth} todos={todos} profile={profile} />
+      </Sider>
     </Layout>
   );
 };

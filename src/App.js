@@ -31,7 +31,7 @@ class App extends Component {
           >
             <Toolbar />
           </Header>
-          <Content style={{ background: "#fff", marginTop: 64 }}>
+          <Content style={{ background: "#f0f2f5", marginTop: 64 }}>
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodoPage} />
@@ -42,7 +42,12 @@ class App extends Component {
               <Route component={NotFoundPage} />
             </Switch>
           </Content>
-          <Footer style={{ textAlign: "center" }}>
+          <Footer
+            style={{
+              textAlign: "center",
+              borderTop: "1px solid rgb(170, 163, 163)"
+            }}
+          >
             Ant Design ©2018 Created by Ant UED
           </Footer>
         </Layout>
