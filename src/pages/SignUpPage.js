@@ -17,8 +17,8 @@ const SignUpPage = ({
   if (auth.uid) return <Redirect to="/" />;
   return (
     <div>
-      <Row type="flex" justify="center">
-        <Col xs={{ span: 16 }} md={{ span: 12 }} lg={{ span: 8 }}>
+      <Row>
+        <Col span={10} offset={6}>
           <SignUp signUpAction={signUpAction} />
           {authError ? (
             <Alert

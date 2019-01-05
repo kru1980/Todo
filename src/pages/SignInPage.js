@@ -15,15 +15,12 @@ const SignInPage = ({
   signInAction,
   clearErrorServerMessageAction
 }) => {
-  const onClose = function(e) {};
-
   if (auth.uid) return <Redirect to="/" />;
   return (
     <div>
       <Row type="flex" justify="center">
         <Col xs={{ span: 16 }} md={{ span: 12 }} lg={{ span: 6 }}>
           <SignIn
-            // onClose={onClose}
             authError={authError}
             auth={auth}
             signInAction={signInAction}
