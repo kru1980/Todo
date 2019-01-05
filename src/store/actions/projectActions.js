@@ -2,7 +2,9 @@ import {
   CREATE_TODO_SUCCESS,
   CREATE_TODO_FAIL,
   DELETE_TODO_FAIL,
-  DELETE_TODO_SUCCESS
+  DELETE_TODO_SUCCESS,
+  TASK_COMPLETED_FAIL,
+  TASK_COMPLETED_SUCCESS
 } from "./typeActions";
 import * as R from "ramda";
 
@@ -52,9 +54,23 @@ export const deleteTodoAcation = id => {
   };
 };
 
-// export const filterUserAction =()=>{
-//   return (dispatch, getState, {getFirestore, getFirebase}) =>{
-//     const fireStore = getFirestore();
-
-//   }
-// }
+export const taskСompletedAction = id => {
+  return (dispatch, getState, { getFirestore, getFirebase }) => {
+    const fireStore = getFirestore();
+    fireStore
+      .collection("todos")
+      .doc(id)
+      .update({
+        completed: true
+      })
+      .then(function() {
+        dispatch({ type: TASK_COMPLETED_SUCCESS });
+        console.log("Document successfully updated!");
+      })
+      .catch(function(error) {
+        // The document probably doesn't exist.
+        dispatch({ type: TASK_COMPLETED_FAIL, payload: error });
+        console.error("Error updating document: ", error);
+      });
+  };
+};

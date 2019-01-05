@@ -59,9 +59,8 @@ const TableHOC = ({ todos }) => {
       <Table
         columns={columns}
         dataSource={todos}
-        // onChange={onChange}
-        title={() => headerTable}
         rowKey={todo => todo.id}
+        title={() => headerTable}
       />
     </div>
   );

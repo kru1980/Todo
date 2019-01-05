@@ -5,7 +5,10 @@ import { Table, Input, Button, Icon, Divider } from "antd";
 import moment from "moment";
 import Highlighter from "react-highlight-words";
 
-import { deleteTodoAcation } from "../../store/actions/projectActions";
+import {
+  deleteTodoAcation,
+  taskСompletedAction
+} from "../../store/actions/projectActions";
 import * as R from "ramda";
 import "./UserTodos.css";
 
@@ -20,6 +23,9 @@ class UserTodos extends React.Component {
     searchText: ""
   };
 
+  componentDidMount() {
+    console.log("hello");
+  }
   // ========== text filter start ==
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({
@@ -153,17 +159,20 @@ class UserTodos extends React.Component {
         width: "16%",
         render: (text, record) => (
           <span>
-            <Button size="small" onClick={e => console.log(e.target)}>
-              Done
-            </Button>
+            {" "}
+            {record.completed ? (
+              <Button icon="check" />
+            ) : (
+              <Button
+                onClick={id => this.props.taskСompletedAction(record.id)}
+              />
+            )}
             <Divider type="vertical" />
             <Button
-              size="small"
-              type="danger"
               onClick={id => this.props.deleteTodoAcation(record.id)}
-            >
-              Delete
-            </Button>
+              type="danger"
+              icon="delete"
+            />
           </span>
         )
       }
@@ -181,11 +190,13 @@ class UserTodos extends React.Component {
         <div className="table-operations" />
         <Table
           title={() =>
-            `Таблица задач пользователя, которые можно редактировать `
+            `Таблица задач пользователя, которые можно редактировать. Фильтр повесить на название задачи, столбец-описание убрать, в действия добавить кнопку ссылку далее на todoDetails `
           }
           columns={columns}
           dataSource={todos && R.filter(todo => todo.authorId === uid)(todos)}
-          onChange={this.handleChange}
+          pagination={{ pageSize: 6 }}
+          // scroll={{ y: 480 }}
+          size="small"
           bordered
           rowKey={todo => todo.id}
           expandedRowRender={record => (
@@ -199,5 +210,5 @@ class UserTodos extends React.Component {
 
 export default connect(
   null,
-  { deleteTodoAcation }
+  { deleteTodoAcation, taskСompletedAction }
 )(UserTodos);
