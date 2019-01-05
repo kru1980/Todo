@@ -23,9 +23,6 @@ class UserTodos extends React.Component {
     searchText: ""
   };
 
-  componentDidMount() {
-    console.log("hello");
-  }
   // ========== text filter start ==
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({

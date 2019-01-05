@@ -19,7 +19,6 @@ function withWindowSizeLoad(Component) {
       this.setState({
         isLow: window.innerWidth < LOW_WIDTH
       });
-      console.log("window.innerWidth", window.innerWidth, this.state);
     };
 
     render() {
@@ -27,7 +26,10 @@ function withWindowSizeLoad(Component) {
       return (
         <div>
           {isLow ? (
-            <div>Данное приложение на вашем экране не работает</div>
+            <div>
+              Данное приложение на вашем экране не работает, зайдите с другого
+              устройства
+            </div>
           ) : (
             <Component {...this.props} />
           )}
