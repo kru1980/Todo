@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+// import { compose } from "redux";
 import Toolbar from "./components/Toolbar/Toolbar";
 import HomePage from "./pages/HomePage/HomePage";
 import TodoDetailsPage from "./pages/TodoDetailsPage";
@@ -8,6 +9,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import withWindowSizeLoad from "./components/HOC/withWindowSizeLoad";
 
 import { Layout } from "antd";
 
@@ -49,4 +51,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default withWindowSizeLoad(App);
