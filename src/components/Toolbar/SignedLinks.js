@@ -1,7 +1,10 @@
 import React from "react";
-import ToolbarLinkUI from "./ToolbarLinkUI";
 import { connect } from "react-redux";
+
+import ToolbarLinkUI from "./ToolbarLinkUI";
 import { signOut } from "../../store/actions/authActions";
+
+import { Avatar } from "antd";
 import "./Toolbar.css";
 
 const SignedLinks = ({ signOut, countTasks, profile }) => {
@@ -23,6 +26,10 @@ const SignedLinks = ({ signOut, countTasks, profile }) => {
         <li>
           {" "}
           <span style={{ color: "green" }}>
+            <Avatar
+              style={{ backgroundColor: "#87d068", marginRight: 10 }}
+              icon="user"
+            />
             Привет: <span>{nickname || displayName}</span>
           </span>{" "}
         </li>

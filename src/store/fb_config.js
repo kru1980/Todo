@@ -7,6 +7,7 @@ import * as firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const config = {
   apiKey: "AIzaSyCV6HVbskI_MnJ6VeCbOzGwGEGkR2f_FZw",
