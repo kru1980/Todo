@@ -15,6 +15,14 @@ export const createdTodo = todo => {
     const displayName = state.firebase.profile.displayName;
     const authorId = state.firebase.auth.uid;
 
+    // const firebase = getFirebase();
+    // const storageRef = firebase
+    //   .storage()
+    //   .ref()
+    //   .child(`imgUserFoto/${authorId}`);
+    // console.log("storageRef", storageRef);
+    // console.log("firebase", firebase);
+
     fireStore
       .collection("todos")
       .add({

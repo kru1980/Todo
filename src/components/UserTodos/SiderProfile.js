@@ -1,7 +1,8 @@
 import React from "react";
 import * as R from "ramda";
+import Upload from "./Upload";
+
 import { Divider } from "antd";
-import Avatar from "./UploadUserFotoComponent";
 
 const SiderProfile = ({ profile, todos, auth: { uid } }) => {
   const todosUser = todos && R.filter(todo => todo.authorId === uid)(todos);
@@ -26,9 +27,9 @@ const SiderProfile = ({ profile, todos, auth: { uid } }) => {
       <p>E-mail: {profile && profile.email} </p>
       <p>Статус: {profile && profile.role}</p>
       <Divider />
-      <h4>Изменить данные о пользователе:</h4>
+      <h4>Изменить аватар пользователя:</h4>
       <div>
-        <Avatar />
+        <Upload />
       </div>
     </div>
   );

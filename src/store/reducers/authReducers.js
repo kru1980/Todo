@@ -4,11 +4,14 @@ import {
   SIGNIN_USER_SUCCESS,
   SIGNIN_USER_FAIL,
   SIGNOUT_SUCCESS,
-  CLEAR_ERROR_SERVER_MESSAGE_SUCCESS
+  CLEAR_ERROR_SERVER_MESSAGE_SUCCESS,
+  ADD_USER_FOTO_SUCCESS,
+  ADD_USER_FOTO_FAIL
 } from "../actions/typeActions";
 
 const initial = {
-  authError: null
+  authError: null,
+  authErrorFoto: null
 };
 
 const authReducers = (state = initial, action) => {
@@ -44,6 +47,18 @@ const authReducers = (state = initial, action) => {
       return {
         ...state,
         authError: null
+      };
+    case ADD_USER_FOTO_SUCCESS:
+      console.log("ADD_USER_FOTO_SUCCESS");
+      return {
+        ...state,
+        authErrorFoto: null
+      };
+    case ADD_USER_FOTO_FAIL:
+      console.log("ADD_USER_FOTO_FAIL");
+      return {
+        ...state,
+        authErrorFoto: action.error.message
       };
 
     default:

@@ -4,7 +4,9 @@ import {
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
   SIGNOUT_SUCCESS,
-  CLEAR_ERROR_SERVER_MESSAGE_SUCCESS
+  CLEAR_ERROR_SERVER_MESSAGE_SUCCESS,
+  ADD_USER_FOTO_SUCCESS,
+  ADD_USER_FOTO_FAIL
 } from "./typeActions";
 
 export const signInAction = existingUser => {
@@ -51,7 +53,6 @@ export const signUpAction = ({ email, password, displayName }, rest) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-
       .then(response => {
         return firestore
           .collection("users")
@@ -81,5 +82,38 @@ export const signUpAction = ({ email, password, displayName }, rest) => {
 export const clearErrorServerMessageAction = () => {
   return dispatch => {
     dispatch({ type: CLEAR_ERROR_SERVER_MESSAGE_SUCCESS });
+  };
+};
+
+export const addFotoUserAction = file => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const state = getState();
+    const firestore = getFirestore();
+    const firebase = getFirebase();
+
+    const authorId = state.firebase.auth.uid;
+    const storageRef = firebase
+      .storage()
+      .ref()
+      .child(`imgUserFoto/${authorId}`);
+
+    storageRef
+      .put(file)
+      .then(() => {
+        storageRef.getDownloadURL().then(url => {
+          return firestore
+            .collection("users")
+            .doc(authorId)
+            .update({
+              photoURL: url
+            });
+        });
+      })
+      .then(() => {
+        dispatch({ type: ADD_USER_FOTO_SUCCESS });
+      })
+      .catch(error => {
+        dispatch({ type: ADD_USER_FOTO_FAIL, error });
+      });
   };
 };

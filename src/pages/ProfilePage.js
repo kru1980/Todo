@@ -20,6 +20,7 @@ const ProfilePage = ({ auth, todos, profile }) => {
         <UserTodos todos={todos} auth={auth} profile={profile} />
       </Content>
       <Sider
+        width="320px"
         theme="light"
         style={{ padding: 10, border: "1px, solid", background: "#f0f2f5" }}
       >
