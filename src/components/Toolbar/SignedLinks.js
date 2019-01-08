@@ -26,7 +26,11 @@ const SignedLinks = ({ signOut, profile }) => {
           {" "}
           <span style={{ color: "green" }}>
             {photoURL ? (
-              <Avatar src={`${photoURL}`} style={{ marginRight: 10 }} />
+              <Avatar
+                size="large"
+                src={`${photoURL}`}
+                style={{ marginRight: 10 }}
+              />
             ) : (
               <Avatar
                 style={{ backgroundColor: "#87d068", marginRight: 10 }}

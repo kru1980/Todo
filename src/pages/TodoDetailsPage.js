@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Row, Col } from "antd";
-import TodoDetails from "../components/TodoDetails";
+import TodoDetails from "../components/TodoDetails/TodoDetails";
 import { connect } from "react-redux";
 
 const TodoDetailsPage = ({ auth }) => {

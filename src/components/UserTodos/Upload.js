@@ -12,9 +12,10 @@ class Upload extends Component {
   };
 
   onSubmit = file => {
-    file ? this.props.addFotoUserAction(this.state.file) : null;
-
-    this.setState({ fileURL: null });
+    if (file) {
+      this.props.addFotoUserAction(this.state.file);
+      this.setState({ fileURL: null });
+    }
   };
   getBase64 = file => {
     let reader = new FileReader();
