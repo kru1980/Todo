@@ -8,7 +8,7 @@ import UserTodos from "../components/UserTodos/UserTodos";
 import SiderProfile from "../components/UserTodos/SiderProfile";
 
 const ProfilePage = ({ auth, todos, profile }) => {
-  // console.log("from ProfilePage auth", auth);
+  console.log("from ProfilePage auth", auth);
   // console.log("from ProfilePage todos", todos);
   // console.log("from ProfilePage profile", profile);
 

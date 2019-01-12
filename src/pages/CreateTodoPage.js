@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 
 const CreateTodoPage = props => {
   const { auth } = props;
+  console.log("CreateTodoPage", props);
 
   if (!auth.uid) {
     return <Redirect to="signInPage" />;

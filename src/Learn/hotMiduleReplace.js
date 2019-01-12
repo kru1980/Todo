@@ -35,6 +35,13 @@ const configureStore = () => {
     )
   );
 
+  // if (module.hot) {
+  //   module.hot.accept("./store/reducers/rootReduser", () => {
+  //     store.replaceReducer(rootReducer);
+  //   });
+  // }
+  // return store;
+
   if (process.env.NODE_ENV !== "production") {
     if (module.hot) {
       module.hot.accept("./store/reducers/rootReduser", () => {
@@ -77,7 +84,23 @@ const render = Component => {
 //   });
 // };
 
+
+
 render(App);
+
+// const rootEL = document.getElementById("root");
+
+// store.firebaseAuthIsReady.then(() => {
+//   ReactDOM.render(
+//     <Provider store={store}>
+//       <Router>
+//         <LocaleProvider locale={ru_RU}>
+//           <App />
+//         </LocaleProvider>
+//       </Router>
+//     </Provider>,
+//     rootEL
+//   );
 
 if (module.hot) {
   module.hot.accept("./App", () => {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Row, Col } from "antd";
-import PandaIcon from "../../Lern/NavBar/Logo";
+import PandaIcon from "./Logo";
 
 import ToolbarLinkUI from "./ToolbarLinkUI";
 import SignedLinks from "./SignedLinks";
@@ -14,7 +14,9 @@ const Toolbar = props => {
     profile
   } = props;
 
-  let countTasks = 33;
+  let countTasks = 6590;
+  // console.log("props", props);
+
   const emailVerified = true;
   const links =
     uid && emailVerified ? (
