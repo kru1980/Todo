@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addFotoUserAction } from "../../store/actions/authActions";
-import { Button } from "antd";
-import { Spin } from "antd";
+import { Button, Upload, Spin, Icon, message } from "antd";
 
-class Upload extends Component {
+class UploadComponent extends Component {
   state = {
     file: null,
     fileURL: null,
@@ -42,6 +41,27 @@ class Upload extends Component {
   };
 
   render() {
+    // ant start
+    const props = {
+      name: "file",
+      // action: "//jsonplaceholder.typicode.com/posts/",
+
+      // headers: {
+      //   authorization: "authorization-text"
+      // },
+
+      onChange(info) {
+        if (info.file.status !== "uploading") {
+          console.log(info.file, info.fileList);
+        }
+        if (info.file.status === "done") {
+          message.success(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === "error") {
+          message.error(`${info.file.name} file upload failed.`);
+        }
+      }
+    };
+    // ant end
     return (
       <div>
         <label htmlFor="avatar">Выберите фотографию:</label>
@@ -63,6 +83,14 @@ class Upload extends Component {
           )}
         </div>
         <Button onClick={this.onSubmit}>Обновить аватар</Button>
+
+        {/* ant component */}
+
+        <Upload {...props}>
+          <Button>
+            <Icon type="upload" /> Click to Upload
+          </Button>
+        </Upload>
       </div>
     );
   }
@@ -70,4 +98,4 @@ class Upload extends Component {
 export default connect(
   null,
   { addFotoUserAction }
-)(Upload);
+)(UploadComponent);

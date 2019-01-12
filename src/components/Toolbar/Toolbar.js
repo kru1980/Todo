@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Row, Col } from "antd";
-import PandaIcon from "../NavBar/Logo";
+import PandaIcon from "../../Lern/NavBar/Logo";
 
 import ToolbarLinkUI from "./ToolbarLinkUI";
 import SignedLinks from "./SignedLinks";

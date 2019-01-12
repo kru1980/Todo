@@ -1,67 +1,88 @@
 import React from "react";
-import { Upload, message, Button, Icon } from "antd";
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
+import { Upload, Button, Icon, message } from "antd";
+import reqwest from "reqwest";
 
-function beforeUpload(file) {
-  const isJPG = file.type === "image/jpeg";
-  if (!isJPG) {
-    message.error("You can only upload JPG file!");
-  }
-  const isLt2M = file.size / 200 / 200 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJPG && isLt2M;
-}
-
-class Avatar extends React.Component {
+class Demo extends React.Component {
   state = {
-    loading: false
+    fileList: [],
+    uploading: false
   };
 
-  handleChange = info => {
-    if (info.file.status === "uploading") {
-      this.setState({ loading: true });
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl =>
+  handleUpload = () => {
+    const { fileList } = this.state;
+    const formData = new FormData();
+    fileList.forEach(file => {
+      formData.append("files[]", file);
+    });
+
+    this.setState({
+      uploading: true
+    });
+
+    // You can use any AJAX library you like
+    reqwest({
+      url: "//jsonplaceholder.typicode.com/posts/",
+      method: "post",
+      processData: false,
+      data: formData,
+      success: () => {
         this.setState({
-          imageUrl,
-          loading: false
-        })
-      );
-    }
+          fileList: [],
+          uploading: false
+        });
+        message.success("upload successfully.");
+      },
+      error: () => {
+        this.setState({
+          uploading: false
+        });
+        message.error("upload failed.");
+      }
+    });
   };
 
   render() {
-    const uploadButton = (
-      <div>
-        <Icon type={this.state.loading ? "loading" : "plus"} />
-        <div className="ant-upload-text">Upload</div>
-      </div>
-    );
-    const imageUrl = this.state.imageUrl;
+    const { uploading, fileList } = this.state;
+    const props = {
+      onRemove: file => {
+        this.setState(state => {
+          const index = state.fileList.indexOf(file);
+          const newFileList = state.fileList.slice();
+          newFileList.splice(index, 1);
+          return {
+            fileList: newFileList
+          };
+        });
+      },
+      beforeUpload: file => {
+        this.setState(state => ({
+          fileList: [...state.fileList, file]
+        }));
+        return false;
+      },
+      fileList
+    };
+
     return (
-      <Upload
-        name="avatar"
-        listType="picture-card"
-        className="avatar-uploader"
-        showUploadList={false}
-        action="//jsonplaceholder.typicode.com/posts/"
-        beforeUpload={beforeUpload}
-        onChange={this.handleChange}
-      >
-        {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
-      </Upload>
+      <div>
+        <Upload {...props}>
+          <Button>
+            <Icon type="upload" /> Select File
+          </Button>
+        </Upload>
+        <Button
+          type="primary"
+          onClick={this.handleUpload}
+          disabled={fileList.length === 0}
+          loading={uploading}
+          style={{ marginTop: 16 }}
+        >
+          {uploading ? "Uploading" : "Start Upload"}
+        </Button>
+      </div>
     );
   }
 }
 
-export default Avatar;
+export default Demo;
