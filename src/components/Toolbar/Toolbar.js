@@ -1,18 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import SignedLinks from "./SignedLinks";
+import SignedOutLinks from "./SignedOutLinks";
 
 import { Row, Col } from "antd";
 import PandaIcon from "./Logo";
-
 import ToolbarLinkUI from "./ToolbarLinkUI";
-import SignedLinks from "./SignedLinks";
-import SignedOutLinks from "./SignedOutLinks";
-import { connect } from "react-redux";
 
-const Toolbar = props => {
-  const {
-    auth: { uid },
-    profile
-  } = props;
+const Toolbar = ({ profile, auth: { uid } }) => {
+  // const {
+  //   auth: { uid },
+  //   profile
+  // } = props;
 
   let countTasks = 6590;
   // console.log("props", props);

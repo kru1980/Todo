@@ -64,6 +64,8 @@ export const deleteTodoAcation = id => {
       });
   };
 };
+
+// == start deleteTodoAcationRef экшен для третей кнопки в таблице, удалял в обход пакета rrf
 export const deleteTodoAcationRef = id => {
   return dispatch => {
     const db = firebase.firestore();

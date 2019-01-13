@@ -8,7 +8,7 @@ import UserTodos from "../components/UserTodos/UserTodos";
 import SiderProfile from "../components/UserTodos/SiderProfile";
 
 const ProfilePage = ({ auth, todos, profile }) => {
-  console.log("from ProfilePage auth", auth);
+  // console.log("from ProfilePage auth", auth);
   // console.log("from ProfilePage todos", todos);
   // console.log("from ProfilePage profile", profile);
 
@@ -16,9 +16,6 @@ const ProfilePage = ({ auth, todos, profile }) => {
   const { Sider, Content } = Layout;
   return (
     <Layout>
-      <Content style={{ background: "#f0f2f5" }}>
-        <UserTodos todos={todos} auth={auth} profile={profile} />
-      </Content>
       <Sider
         width="320px"
         theme="light"
@@ -26,6 +23,9 @@ const ProfilePage = ({ auth, todos, profile }) => {
       >
         <SiderProfile auth={auth} todos={todos} profile={profile} />
       </Sider>
+      <Content style={{ background: "#f0f2f5" }}>
+        <UserTodos todos={todos} auth={auth} profile={profile} />
+      </Content>
     </Layout>
   );
 };

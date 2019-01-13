@@ -23,15 +23,15 @@ class App extends Component {
         <Layout style={{ minHeight: "100vh" }}>
           <Header
             style={{
-              position: "fixed",
-              zIndex: 99999,
+              // position: "fixed",
+              // zIndex: 99999, // не помню для чего делал
               width: "100%",
               background: "orangered"
             }}
           >
             <Toolbar />
           </Header>
-          <Content style={{ background: "#f0f2f5", marginTop: 64 }}>
+          <Content style={{ background: "#f0f2f5" }}>
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodoPage} />
