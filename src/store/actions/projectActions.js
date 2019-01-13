@@ -6,7 +6,10 @@ import {
   TASK_COMPLETED_FAIL,
   TASK_COMPLETED_SUCCESS
 } from "./typeActions";
+
 import * as R from "ramda";
+
+import firebase from "../fb_config";
 
 export const createdTodo = todo => {
   return (dispatch, getState, { getFirestore, getFirebase }) => {
@@ -58,6 +61,20 @@ export const deleteTodoAcation = id => {
       })
       .catch(error => {
         dispatch({ type: DELETE_TODO_FAIL, payload: error });
+      });
+  };
+};
+export const deleteTodoAcationRef = id => {
+  return dispatch => {
+    const db = firebase.firestore();
+    const docRef = db.collection("todos").doc(id);
+    docRef
+      .delete()
+      .then(function() {
+        console.log("Document successfully deleted!");
+      })
+      .catch(function(error) {
+        console.error("Error removing document: ", error);
       });
   };
 };

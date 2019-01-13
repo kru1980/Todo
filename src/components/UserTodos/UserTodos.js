@@ -7,7 +7,8 @@ import Highlighter from "react-highlight-words";
 
 import {
   deleteTodoAcation,
-  taskСompletedAction
+  taskСompletedAction,
+  deleteTodoAcationRef
 } from "../../store/actions/projectActions";
 import * as R from "ramda";
 import "./UserTodos.css";
@@ -179,6 +180,9 @@ class UserTodos extends React.Component {
                 icon="delete"
               />
             </Tooltip>
+            {/* <button onClick={id => this.props.deleteTodoAcationRef(record.id)}>
+              Del
+            </button> */}
           </span>
         )
       }
@@ -215,5 +219,5 @@ class UserTodos extends React.Component {
 
 export default connect(
   null,
-  { deleteTodoAcation, taskСompletedAction }
+  { deleteTodoAcation, taskСompletedAction, deleteTodoAcationRef }
 )(UserTodos);

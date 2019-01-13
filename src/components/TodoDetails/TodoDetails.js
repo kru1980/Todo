@@ -17,7 +17,10 @@ const breadcrumbNameMapGenerator = (location, todo) => {
 };
 // =========== Breadcrumb end ===========
 
-const TodoDetails = ({ todo, location }) => {
+const TodoDetails = props => {
+  console.log("TodoDetails props", props);
+
+  const { todo, location } = props;
   if (todo) {
     // =========== Breadcrumb start ===========
     const pathSnippets = location.pathname.split("/").filter(i => i);
@@ -79,6 +82,14 @@ const mapStateToProps = (state, ownProps) => {
     auth: state.firebase.auth
   };
 };
+
+// export default compose(
+//   withRouter,
+//   firestoreConnect(props => [{ collection: "todos", doc: props.id }]),
+//   connect(({ firestore: { ordered } }, props) => ({
+//     todos: ordered.todos && ordered.todos[id]
+//   }))
+// )(TodoDetails);
 
 export default compose(
   withRouter,
