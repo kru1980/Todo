@@ -1,10 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 import ToolbarLinkUI from "./ToolbarLinkUI";
 import { signOut } from "../../store/actions/authActions";
 
-import { Avatar } from "antd";
+import { Avatar, Menu, Dropdown, Icon } from "antd";
 import "./Toolbar.css";
+
+const menu = (
+  <Menu>
+    <Menu.Item key="0">
+      <Link to="/AccountPage">Account</Link>
+    </Menu.Item>
+  </Menu>
+);
 
 const SignedLinks = ({ signOut, profile }) => {
   const { nickname, displayName, photoURL } = profile;
@@ -37,7 +47,19 @@ const SignedLinks = ({ signOut, profile }) => {
                 icon="user"
               />
             )}{" "}
-            Привет: <span>{nickname || displayName}</span>
+            Привет:{" "}
+            <span>
+              {nickname || displayName}{" "}
+              <Dropdown overlay={menu} trigger={["click"]}>
+                <a
+                  className="ant-dropdown-link"
+                  href="#"
+                  style={{ color: "green" }}
+                >
+                  <Icon type="down" />
+                </a>
+              </Dropdown>
+            </span>
           </span>{" "}
         </li>
       </ul>

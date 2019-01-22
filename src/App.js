@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Toolbar from "./components/Toolbar/Toolbar";
 import HomePage from "./pages/HomePage/HomePage";
 import TodoDetailsPage from "./pages/TodoDetailsPage";
+import AccountPage from "./pages/AccountPage";
 import CreateTodoPage from "./pages/CreateTodoPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUpPage from "./pages/SignUpPage";
@@ -35,6 +36,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodoPage} />
+              <Route path="/accountPage" component={AccountPage} />
               <Route exact path="/profilePage" component={ProfilePage} />
               <Route path="/profilePage/:id?" component={TodoDetailsPage} />
               <Route path="/signInPage" component={SignInPage} />
