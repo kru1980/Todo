@@ -1,0 +1,27 @@
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 260px;
+    line-height: 260px;
+    overflow: hidden;
+    color:white;
+  }
+  
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+  .ant-carousel .slick-slide .baner1 {
+    width: 100%;
+    height: auto;
+    background: url(/img/33.jpg);
+    
+  }
+  .ant-carousel .slick-slide .baner2 {
+    width: 100%;
+    height: auto;
+    background: url(/img/max.jpg) no-repeat;
+    background-position-y: 60%;
+    background-size: cover;
+    background-color: orange;
+
+
+  }

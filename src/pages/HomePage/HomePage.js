@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import ProjectLists from "../../components/ProjectLists";
+import SliderComponent from "../../components/SliderComponent/SliderComponent";
 
 import { Layout } from "antd";
 
@@ -14,7 +15,7 @@ class Home extends Component {
       <div>
         <Layout>
           <Content style={{ background: "lightgrey" }}>
-            <div />
+            <SliderComponent />
             <ProjectLists todos={todos} auth={auth} />
           </Content>
         </Layout>
