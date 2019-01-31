@@ -5,22 +5,14 @@ import SignedLinks from "./SignedLinks";
 import SignedOutLinks from "./SignedOutLinks";
 
 import { Row, Col } from "antd";
-import PandaIcon from "./Logo";
+import Logo from "./Logo";
 import ToolbarLinkUI from "./ToolbarLinkUI";
 
 const Toolbar = ({ profile, auth: { uid } }) => {
-  // const {
-  //   auth: { uid },
-  //   profile
-  // } = props;
-
-  let countTasks = 6590;
-  // console.log("props", props);
-
   const emailVerified = true;
   const links =
     uid && emailVerified ? (
-      <SignedLinks profile={profile} countTasks={countTasks} />
+      <SignedLinks profile={profile} />
     ) : (
       <SignedOutLinks />
     );
@@ -30,7 +22,7 @@ const Toolbar = ({ profile, auth: { uid } }) => {
       <Row type="flex">
         <Col xs={{ span: 1, offset: 0 }} md={{ span: 3, offset: 2 }}>
           <ToolbarLinkUI exact to="/">
-            <PandaIcon />
+            <Logo />
           </ToolbarLinkUI>
         </Col>
         <Col xs={{ span: 22, offset: 1 }} md={{ span: 17, offset: 2 }}>

@@ -1,10 +1,11 @@
 import React from "react";
 import { Row, Col, Divider } from "antd";
 import Upload from "./Upload";
+// import UploadUserFotoComponent from "./UploadUserFotoComponent";
 
 const AccountComponent = ({ profile }) => {
   return (
-    <div>
+    <React.Fragment>
       <Row type="flex" justify="center">
         <Col style={{ marginTop: 20 }} xs={{ span: 12 }}>
           <h4>Данные о пользователе:</h4>
@@ -12,13 +13,10 @@ const AccountComponent = ({ profile }) => {
           <p>E-mail: {profile && profile.email} </p>
           <p>Статус: {profile && profile.role}</p>
           <Divider />
-          <h4>Изменить аватар пользователя:</h4>
-          <div>
-            <Upload />
-          </div>
+          <Upload />
         </Col>
       </Row>
-    </div>
+    </React.Fragment>
   );
 };
 

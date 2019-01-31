@@ -53,7 +53,7 @@ const SignedLinks = ({ signOut, profile }) => {
               <Dropdown overlay={menu} trigger={["click"]}>
                 <a
                   className="ant-dropdown-link"
-                  href="#"
+                  // href="#"
                   style={{ color: "green" }}
                 >
                   <Icon type="down" />

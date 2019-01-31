@@ -46,13 +46,17 @@ const PandaSvg = () => (
   </svg>
 );
 
-const PandaIcon = props => (
+const Logo = props => (
   <Icon
     component={PandaSvg}
     {...props}
-    style={{ fontSize: "42px", lineHeight: "64px", marginleft: "10px" }}
+    style={{
+      fontSize: "42px",
+      lineHeight: "42px",
+      marginleft: "10px",
+      verticalAlign: "middle"
+    }}
   />
 );
 
-export default PandaIcon;
-// export const Logo = <PandaIcon style={{ fontSize: '32px' }} />
+export default Logo;

@@ -9,15 +9,12 @@ import { Layout } from "antd";
 
 class Home extends Component {
   render() {
-    const { Content } = Layout;
     const { todos, auth } = this.props;
     return (
       <div>
         <Layout>
-          <Content style={{ background: "lightgrey" }}>
-            <SliderComponent />
-            <ProjectLists todos={todos} auth={auth} />
-          </Content>
+          <SliderComponent />
+          <ProjectLists todos={todos} auth={auth} />
         </Layout>
       </div>
     );

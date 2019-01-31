@@ -18,14 +18,6 @@ export const createdTodo = todo => {
     const displayName = state.firebase.profile.displayName;
     const authorId = state.firebase.auth.uid;
 
-    // const firebase = getFirebase();
-    // const storageRef = firebase
-    //   .storage()
-    //   .ref()
-    //   .child(`imgUserFoto/${authorId}`);
-    // console.log("storageRef", storageRef);
-    // console.log("firebase", firebase);
-
     fireStore
       .collection("todos")
       .add({
@@ -92,7 +84,6 @@ export const taskСompletedAction = id => {
       })
       .then(function() {
         dispatch({ type: TASK_COMPLETED_SUCCESS });
-        console.log("Document successfully updated!");
       })
       .catch(function(error) {
         // The document probably doesn't exist.

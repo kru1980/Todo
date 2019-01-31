@@ -1,0 +1,60 @@
+
+/*стили кнопки как у ант*/
+
+.file-upload input[type="file"]{
+    display: none;/* скрываем input file */
+}
+
+/* задаем стили кнопки выбора файла*/
+
+.file-upload {
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+    width: 164px;
+    height: 32px;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    font-family: inherit;
+    background: #fff;
+    border: 1px solid transparent;
+    border-color: #d9d9d9;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.file-upload:hover {
+    color: #40a9ff;
+    background-color: #fff;
+    border-color: #40a9ff;
+}
+.file-upload:active {
+    color: #096dd9;
+    border-color: #096dd9;
+}
+
+/* Растягиваем label на всю область блока .file-upload */
+
+.file-upload label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    
+}
+
+/* стиль текста на кнопке*/
+
+.file-upload span {
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    color: rgba(0, 0, 0, 0.65);
+    line-height: 2;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.file-upload:hover span{
+       color: #40a9ff;
+}
+

@@ -9,8 +9,8 @@ const SliderComponent = () => {
     initialSlide: 2,
     infinite: true,
     speed: 2000,
-    autoplay: true,
-    autoplaySpeed: 10000,
+    // autoplay: true,
+    // autoplaySpeed: 10000,
     pauseOnHover: true,
     fade: true
   };

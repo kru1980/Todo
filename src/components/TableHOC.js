@@ -6,10 +6,7 @@ import * as R from "ramda";
 const TableHOC = ({ todos }) => {
   const headerTable = (
     <div>
-      <h3 style={{ textAlign: "center" }}>
-        Главная страница, на которой представленны задачи всех пользователей,
-        без возможности редактирования
-      </h3>
+      <h4>Всего задач: {todos.length}</h4>
     </div>
   );
   const columns = [
@@ -50,16 +47,14 @@ const TableHOC = ({ todos }) => {
     }
   ];
 
-  // function onChange(pagination, filters, sorter) {
-  //   console.log("params", pagination, filters, sorter);
-  // }
-
   return (
     <div>
       <Table
         columns={columns}
         dataSource={todos}
         rowKey={todo => todo.id}
+        pagination={{ pageSize: 9 }}
+        size="small"
         title={() => headerTable}
       />
     </div>

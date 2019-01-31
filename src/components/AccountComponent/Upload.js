@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addFotoUserAction } from "../../store/actions/authActions";
-import { Button, Upload, Spin, Icon, message } from "antd";
+import { Button, Spin, Icon } from "antd";
+import "./UploadComponent.css";
 
 class UploadComponent extends Component {
   state = {
@@ -16,6 +17,10 @@ class UploadComponent extends Component {
       this.setState({ fileURL: null });
     }
   };
+  onReset = () => {
+    this.setState({ fileURL: null });
+  };
+
   getBase64 = file => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -40,57 +45,58 @@ class UploadComponent extends Component {
     });
   };
 
-  render() {
-    // ant start
-    const props = {
-      name: "file",
-      // action: "//jsonplaceholder.typicode.com/posts/",
-
-      // headers: {
-      //   authorization: "authorization-text"
-      // },
-
-      onChange(info) {
-        if (info.file.status !== "uploading") {
-          console.log(info.file, info.fileList);
-        }
-        if (info.file.status === "done") {
-          message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === "error") {
-          message.error(`${info.file.name} file upload failed.`);
-        }
-      }
+  getStyle = () => {
+    return {
+      overflow: "hidden",
+      marginTop: "20px",
+      marginBottom: "20px",
+      width: "200px",
+      height: "200px",
+      borderBottom: "1px #ccc dotted",
+      display: this.state.fileURL ? "block" : "none"
     };
-    // ant end
+  };
+
+  render() {
     return (
       <div>
-        <label htmlFor="avatar">Выберите фотографию:</label>
-
-        <input
-          type="file"
-          id="avatar"
-          name="avatar"
-          accept=".png, .jpeg, jpg"
-          onChange={this.handleUploadSuccess}
-        />
-        <div className="imag">
-          {this.state.loading ? (
-            <Spin />
-          ) : (
-            this.state.fileURL && (
-              <img src={this.state.fileURL} alt={this.state.file.name} />
-            )
-          )}
-        </div>
-        <Button onClick={this.onSubmit}>Обновить аватар</Button>
-
-        {/* ant component */}
-
-        <Upload {...props}>
-          <Button>
-            <Icon type="upload" /> Click to Upload
-          </Button>
-        </Upload>
+        <h4>Изменить аватар пользователя:</h4>
+        <form>
+          <div className="file-upload">
+            <label htmlFor="avatar">
+              <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept=".png, .jpeg, .jpg"
+                onChange={this.handleUploadSuccess}
+              />
+              <span>
+                <Icon type="upload" style={{ marginRight: 6 }} />
+                Выберите фото
+              </span>
+            </label>
+          </div>
+          <div className="image">
+            {this.state.loading ? (
+              <Spin />
+            ) : (
+              this.state.fileURL && (
+                <img
+                  src={this.state.fileURL}
+                  alt={this.state.file.name}
+                  style={this.getStyle()}
+                />
+              )
+            )}
+            {this.state.fileURL ? (
+              <div>
+                <Button onClick={this.onReset}>Отмена</Button>
+                <Button onClick={this.onSubmit}>Обновить аватар</Button>
+              </div>
+            ) : null}
+          </div>
+        </form>
       </div>
     );
   }
