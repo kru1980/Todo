@@ -9,6 +9,7 @@ import Logo from "./Logo";
 import ToolbarLinkUI from "./ToolbarLinkUI";
 
 const Toolbar = ({ profile, auth: { uid } }) => {
+  // console.log("Toolbar profile", profile);
   const emailVerified = true;
   const links =
     uid && emailVerified ? (

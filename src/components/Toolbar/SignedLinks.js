@@ -17,7 +17,7 @@ const menu = (
 );
 
 const SignedLinks = ({ signOut, profile }) => {
-  const { nickname, displayName, photoURL } = profile;
+  const { nickname, displayName, photoURL, role } = profile;
   return (
     <div>
       <ul className="toolbarList">
@@ -27,6 +27,12 @@ const SignedLinks = ({ signOut, profile }) => {
         <li>
           <ToolbarLinkUI to="/profilePage">Profile</ToolbarLinkUI>
         </li>
+        {role === "admin" ? (
+          <li>
+            <ToolbarLinkUI to="/adminPage">Admin</ToolbarLinkUI>
+          </li>
+        ) : null}
+
         <li>
           <a className="toolbarLinkUI" onClick={signOut}>
             Log Out

@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import AdminPage from "./pages/AdminPage";
 import withWindowSizeLoad from "./components/HOC/withWindowSizeLoad";
 
 import { Layout } from "antd";
@@ -36,6 +37,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route path="/createTodo" component={CreateTodoPage} />
+              <Route path="/adminPage" component={AdminPage} />
               <Route path="/accountPage" component={AccountPage} />
               <Route exact path="/profilePage" component={ProfilePage} />
               <Route path="/profilePage/:id?" component={TodoDetailsPage} />

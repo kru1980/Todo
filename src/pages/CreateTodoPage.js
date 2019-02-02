@@ -1,13 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+
 import { Row, Col } from "antd";
+
 import CreateTodoForm from "../components/CreateTodoForm";
 import { createdTodo } from "../store/actions/projectActions";
-import { connect } from "react-redux";
 
 const CreateTodoPage = props => {
   const { auth } = props;
-  console.log("CreateTodoPage", props);
 
   if (!auth.uid) {
     return <Redirect to="signInPage" />;

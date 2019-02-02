@@ -85,7 +85,6 @@ class DrawerForm extends React.Component {
           style={{
             overflow: "auto",
             height: "calc(100% - 108px)",
-            // height: "50%",
             paddingBottom: "108px"
           }}
         >
