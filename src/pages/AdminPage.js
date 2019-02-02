@@ -6,10 +6,6 @@ import { connect } from "react-redux";
 import AdminComponent from "../components/AdminComponent/AdminComponent";
 
 const AdminPage = ({ auth: { uid }, profile, state, users }) => {
-  console.log("role", profile.role);
-  console.log("state", state);
-  console.log("profile", profile.role);
-
   if (!uid || profile.role !== "admin") {
     return <Redirect to="/" />;
   } else {
@@ -32,7 +28,9 @@ const mapStateToProps = state => {
 export default compose(
   firestoreConnect([
     {
-      collection: "users"
+      collection: "users",
+      orderBy: ["displayName", "desc"]
+      // where: [["role", "==", "admin"]]
     }
   ]),
   connect(mapStateToProps)
